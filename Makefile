@@ -3,7 +3,7 @@
 # All rights, including trade secret rights, reserved.
 #
 
-OUTPUT_FILENAME  := linux_app
+OUTPUT_FILENAME  := c++_app
 
 SRC_CODES_PATH   := src
 INCLUDES_PATH	 := include
@@ -39,10 +39,11 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source application codes to all targets
 C_SOURCE_FILES += $(SRC_CODES_PATH)/main.cc
-
+C_SOURCE_FILES += $(SRC_CODES_PATH)/person.cc
+C_SOURCE_FILES += $(SRC_CODES_PATH)/son.cc
+C_SOURCE_FILES += $(SRC_CODES_PATH)/grandson.cc
 
 INC_PATHS += -I"$(INCLUDES_PATH)"
-
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -110,7 +111,7 @@ clean:
 cleanobj:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)/*.o
 
-.PHONY : run
 run:
-	$(NO_ECHO) sudo ./linux_app
+	$(NO_ECHO)./c++_app
+.PHONY: run
 

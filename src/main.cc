@@ -1,4 +1,7 @@
-
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -7,14 +10,16 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <string.h>
-#include <stdlib.h>
 #include <limits.h>
 #include <errno.h>
 #include <sys/wait.h>
 
-#include <sys/shm.h>
 #include <sys/sem.h>
+#include <sys/shm.h>
 #include <sys/ipc.h>
+#include "person.h"
+#include "son.h"
+#include "grandson.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -109,7 +114,7 @@ void m_pid(void)
       }
 }
 
-// pipe
+// 进程间通信-匿名管道，只适用于有血缘关系的进程
 void my_pipe(void)
 {
     int fd[2];
@@ -201,7 +206,7 @@ int m_brother_pid_pipe(void)
 
 void m_father_child_pipe(void)
 {
-    pid_t pid ;
+    pid_t pid;
     int   fd[2];
     char* m_string = "hello child\n";
     char  str[MAX_STR_SIZE];
@@ -235,9 +240,7 @@ void m_father_child_pipe(void)
     }
 }
 
-
-
-//fifo exersices
+//进程间通信-有名管道
 void m_creat_fifo(char* fifo_name)
 {
     mode_t mode = 0666;
@@ -300,7 +303,7 @@ void m_write_fifo(char* fifo_name)
     }
 }
 
-//sem 信号量互斥实验
+//进程间通信-信号量互斥实验
 void release_sem(int semid)
 {
     struct sembuf sops;
@@ -337,7 +340,7 @@ void sem_stua(void)
 
     printf("val is %d\n", semctl(semid,0,GETVAL));
     //打开文件
-    fd = open("/home/ronald/board.txt",O_RDWR|O_APPEND);
+    fd = open("/home/liutao/board.txt",O_RDWR|O_APPEND);
 
     //获取信号量
     get_sem(semid);
@@ -347,7 +350,7 @@ void sem_stua(void)
     sleep(10);
     //公告板文件写入 取消
     write(fd,"is cancel",11);
-
+    printf("val is %d\n", semctl(semid,0,GETVAL));
     //释放信号量
     release_sem(semid);
     
@@ -366,7 +369,7 @@ void sem_stub(void)
     semid = semget(key,1,IPC_CREAT);
     printf("val is %d\n", semctl(semid,0,GETVAL));
     //1 打开公告板
-    fd = open("/home/ronald/board.txt",O_RDWR|O_APPEND);
+    fd = open("/home/liutao/board.txt",O_RDWR|O_APPEND);
     
     //获取信号量
     get_sem(semid);
@@ -378,97 +381,244 @@ void sem_stub(void)
     close(fd);
 }
 
-//共享内存
-int share(void)
+//进程间通信-共享内存
+void shm_share(void)
 {
     pid_t pid;
 
-    //创建子进程
-    pid = fork();
-    if(pid == -1)
+    if ((pid = fork()) < 0 )
     {
-        perror("error!!!!");
-        return 1;
-    }
-    else if(pid == 0)
-    {
-        char *addr;
+         perror("fork error");
+    }else if (pid == 0){
         int shmid;
-        key_t key = ftok("/home", 1);
-        //创建一个共享内存
-        shmid = shmget(key,1024,IPC_CREAT|0660);
-        if(shmid == -1)
-        {
-            perror("create share memory failed!");
-            return 1;
-        }
-        
-        //连接共享内存到一个进程的空间
-        addr = (char*)shmat(shmid,NULL,0);
-        if(addr == (char *)(-1))
-        {
-            perror("cannot attach!");
-            return 1;
-        }
-        printf("share memory segment's address:%x\n",addr);
-        
-        //向这个空间中写入数据
-        strcpy(addr,"welcome to linux!");
-        printf("child process string is' %s'\n",addr);
-        if(shmdt(addr)==-1)
-        {
-            perror("release failed!");
-            return 1;
-        }
-        exit(0);
-    }
-    else
-    {
-        wait(NULL);
-        char *addr;
-        int shmid;
-        key_t key = ftok("/home", 1);
-        //创建一个共享内存
-        shmid = shmget(key,1024,IPC_CREAT|0660);
-        addr = (char*)shmat(shmid,NULL,0);
-        if(addr == (char *)(-1))
-        {
-            perror("cannot attach!");
-            return 1;
-        }
+        key_t key;
+        char* shm;
+        key = ftok("/home", 1);
 
-        printf("parent process string is '%s'\n",addr);//父进程读取共享内存的数据
-        
-        //父进程中分离共享内存
-        if(shmdt(addr)==-1)
+        if ((shmid = shmget(key, 1024,IPC_CREAT)) < 0)
         {
-            perror("release failed!");
-            return 1;
+            perror("shmget error");
+            exit(1);
         }
-        
-        //删除共享内存
-        if(shmctl(shmid,IPC_RMID,NULL)==-1)
+        shm = (char*)shmat(shmid, 0, 0);
+        strcpy(shm, "hello hisense");
+        printf("shm is %s\n", shm);
+        if (shmdt(shm) < 0)
         {
-            perror("failed!");
-            return 1;
+             perror("shmdt error");
+             exit(1);
         }
+    }else if (pid > 0)
+    {
+        int shmid;
+        key_t key;
+        char* shm;
+        key = ftok("/home", 1);
+        //char* buf;
+        //buf = (char*)malloc(1024);
+        sleep(2);
+        if ((shmid = shmget(key, 1024,IPC_CREAT)) < 0)
+        {
+            perror("shmget error");
+            exit(1);
+        }
+        shm = (char*)shmat(shmid, 0, 0);
+        printf("memory is %s\n", shm);
+        if (shmdt(shm) < 0)
+        {
+             perror("shmdt error");
+             exit(1);
+        }
+        //printf("memory is %s\n", buf);
     }
-    return 0;
 
 }
+
+//线程编程
+
+void *pthread_func(void * arg)
+{
+    pid_t pid;
+    int i = 0;
+
+    pid = getpid();
+    printf("the pid is %d\n", pid);
+    while(i != 10)
+    {
+        printf("hello my thread\n");
+        i ++;
+    }
+}
+
+//程序设计中经常会用到的回调函数实例
+void share_callback(int a)
+{
+    if (a == 5)
+    {
+        printf("you are coming\n");
+    }
+
+}
+
 
 int main(int argc, char* argv[])
 {
-    share();
-    if (argc == 1)
+/*********************************linux_c 进程间通信实验********************************/
+    if (argc == 2)
     {
-        sem_stua();
-    }else
-    {   
-        sem_stub();
-    }
-    exit(1);
-    return 0;
+        int fd;
+        fd = open("/home/liutao/flag.txt",O_RDWR);
+        if (fd < 0 )
+        {
+             perror("open error");
+        }
+    
+        ftruncate(fd,0);
+        lseek(fd, 0, SEEK_SET);
+        write(fd, "0123456789",sizeof("0123456789"));
+        close(fd);
+
+    }else if (argc == 3)
+    {
+        FILE *fp1, *fp2;
+        char fpbuf[1024];
+        int nbytes;
+
+        if ((fp1 = fopen("/home/liutao.ex/flag.txt", "rb")) == NULL)
+        {
+            perror("failed open fp1");
+        }
+        if ((fp2 = fopen("/home/liutao.ex/dest.txt", "wb")) == NULL)
+        {
+            perror("failed open fp2");
+        }
+
+        while((nbytes = fread(fpbuf, sizeof(char), 1024, fp1)) > 0)
+        {
+            if (fwrite(fpbuf, sizeof(char), nbytes, fp2) == -1)
+            {
+                perror("failed to write");
+            }
+        }
+        printf("the fpbuf is %s\n", fpbuf);
+        if (nbytes == -1)
+        {
+            perror("failed to read");
+        }
+
+        fclose(fp1);
+        fclose(fp2);
+    }else{
+        struct Node
+        {
+            int a;
+            int b;
+            int c;
+        };
+        char  buf[] = "hello hisense";
+        char* cpbuf;
+        cpbuf = (char*)malloc(sizeof(buf));
+        strcpy(cpbuf, buf);
+        printf("the cpbuf is %s\n", cpbuf);
+        free(cpbuf);
+        Node* m_node = (Node*)malloc(sizeof(struct Node));
+        m_node -> a = 10;
+        m_node -> b = 11;
+        m_node -> c = 12;
+    
+        int val = 2;
+    
+        while(val < 10)
+        {
+            val ++;
+            std::cout << "val is " << val << std::endl;
+        }
+    
+        std::cout << "struct val is " << m_node -> c << std::endl;
+    
+        free(m_node);
+
+/***************************************c++实验***************************************/
+        CPerson m_person;
+        CSon m_son;
+
+        CPerson* p = new CSon;
+        CPerson* q = new GrandSon;
+        p->SayTruth();
+        q->SayTruth();
+        m_person.set_my_age(15);
+        m_person.set_my_salary(100);
+        m_person.SayTruth();
+    
+        m_son.SonSetAll(10,100);
+        m_son.OutPutName();
+        m_son.callback(10, share_callback);
+        m_son.SayTruth();
+
+
+/***************************************线程实验***************************************/
+        pthread_t thread_id;
+        pid_t pid;
+        int err;
+    
+        pid = getpid();
+        printf("pid is %d\n", pid);
+        if ((err = pthread_create(&thread_id,NULL, pthread_func, NULL)) != 0)
+        {
+            perror("pthread create failed");
+        }
+
+//主线程先休眠让创建的线程先执行
+        sleep(1);
+/***************************************文件编程实验***************************************/
+        int fd1;
+        char filebuf[255];
+        int offset;
+        fd1 = open("/home/liutao.ex/flag.txt",O_RDWR);
+        if (fd1 < 0 )
+        {
+             perror("open error");
+        }
+    
+        ftruncate(fd1,0);
+        lseek(fd1, 0, SEEK_SET);
+        write(fd1, "0123456789",sizeof("0123456789"));
+        printf("sizeof is %d\n", sizeof("0123456789"));
+
+        offset = lseek(fd1, 0 ,SEEK_CUR);
+        printf("after write the offset is %d\n", offset);
+        close(fd1);
+
+        fd1 = open("/home/liutao.ex/flag.txt",O_RDWR);
+        if (fd1 < 0 )
+        {
+             perror("open error");
+        }
+
+        offset = lseek(fd1, 0 ,SEEK_CUR);                          //得到当前的位置
+        printf("before read the offset is %d\n", offset);
+
+        offset = lseek(fd1, sizeof("0123456789")-5 ,SEEK_SET);     //设置位置
+        printf("read count is %d\n", read(fd1,filebuf,sizeof(filebuf)));
+
+        offset = lseek(fd1, 0 ,SEEK_CUR);                          //得到当前的位置
+        printf("after read the offset is %d\n", offset);
+        printf("filebuf is %s\n", filebuf);
+
+        if (filebuf[0] == '0')
+        {
+            printf("the function is closed \n");
+        }
+        else{
+            printf("the function is open\n");
+        }
+
+        close(fd1);
+        char* pp = "123456789";
+        std::string url;
+        url = pp;
+        printf("the url is %s\n" ,url.c_str());
+        return 0;
+        }
+    
 }
-
-
