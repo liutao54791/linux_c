@@ -17,7 +17,7 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
 int UART_Init(int fd, int speed,int flow_ctrlint ,int databits,int stopbits,char parity);
 int UART_Recv(int fd, char *rcv_buf,int data_len);
 int UART_Send(int fd, char *send_buf,int data_len);
-
+int uart_test(int argc, char **argv);
 /*****************************************************************
 * 名称： UART0_Open
 * 功能： 打开串口并返回串口设备文件描述
@@ -256,7 +256,7 @@ int UART_Send(int fd, char *send_buf,int data_len)
 
 
 
-int main(int argc, char **argv)
+int uart_test(int argc, char **argv)
 {
     int fd = FALSE;             
     int ret;                          
