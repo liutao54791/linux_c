@@ -131,7 +131,7 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
     }
      //设置校验位
     switch (parity) {
-        case 'n':
+            case 'n':
             case 'N': //无奇偶校验位。
                 options.c_cflag &= ~PARENB;
                 options.c_iflag &= ~INPCK;
@@ -158,15 +158,15 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
     }
      // 设置停止位
     switch (stopbits){
-        case 1:
-            options.c_cflag &= ~CSTOPB;
+            case 1:
+                options.c_cflag &= ~CSTOPB;
                 break;
             case 2:
                 options.c_cflag |= CSTOPB;
-                   break;
+                break;
             default:
-                 fprintf(stderr,"Unsupported stop bits\n");
-                 return (FALSE);
+                fprintf(stderr,"Unsupported stop bits\n");
+                return (FALSE);
     }
     //修改输出模式，原始数据输出
         options.c_oflag &= ~OPOST;
@@ -180,12 +180,11 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
     //激活配置 (将修改后的termios数据设置到串口中）
     if (tcsetattr(fd,TCSANOW,&options) != 0)
     {
-               perror("com set error!/n");
-       return (FALSE);
+        perror("com set error!/n");
+        return (FALSE);
     }
     return (TRUE);
 }
-
 
 int UART_Init(int fd, int speed,int flow_ctrlint ,int databits,int stopbits,char parity)
 {
