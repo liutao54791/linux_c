@@ -46,7 +46,7 @@ C_SOURCE_FILES += $(SRC_CODES_PATH)/uart.cc
 
 INC_PATHS += -I"$(INCLUDES_PATH)"
 
-OBJECT_DIRECTORY = _build
+OBJECT_DIRECTORY = build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
 OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 
@@ -107,7 +107,7 @@ echosize:
 clean:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)
 	$(NO_ECHO)$(RM) $(MAKEFILE_DIR)/$(OUTPUT_FILENAME)
-	@echo Deleting folder: _build
+	@echo Deleting folder: build
 
 cleanobj:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)/*.o
