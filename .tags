@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	makefile	/^CC = gcc$/;"	m
+CFLAGS	makefile	/^CFLAGS = -lstdc++ -Wall  -g$/;"	m
+CPP_OBJS	makefile	/^CPP_OBJS = $(patsubst %.cpp, $(OBJ_PATH)\/%.o, $(CPP_SOURCES))$/;"	m
+CPP_SOURCES	makefile	/^CPP_SOURCES = $(foreach d,$(CPP_SRCDIR),$(wildcard $(d)\/*.cpp) )$/;"	m
+CPP_SRCDIR	makefile	/^CPP_SRCDIR = $(SRCDIR)$/;"	m
+C_OBJS	makefile	/^C_OBJS = $(patsubst %.c, $(OBJ_PATH)\/%.o, $(C_SOURCES))$/;"	m
+C_SOURCES	makefile	/^C_SOURCES = $(foreach d,$(C_SRCDIR),$(wildcard $(d)\/*.c) )$/;"	m
+C_SRCDIR	makefile	/^C_SRCDIR = $(SRCDIR)$/;"	m
+INCLUDES	makefile	/^INCLUDES = -I include$/;"	m
+LIBS	makefile	/^LIBS = -lpthread$/;"	m
+LINKFLAGS	makefile	/^LINKFLAGS =$/;"	m
+OBJ_PATH	makefile	/^OBJ_PATH = objs$/;"	m
+PREFIX_BIN	makefile	/^PREFIX_BIN =$/;"	m
+SRCDIR	makefile	/^SRCDIR = src$/;"	m
+TARGET	makefile	/^TARGET = .\/test$/;"	m
+exit_s	src/fork.c	/^void exit_s(int status)$/;"	f
+main	src/fork.c	/^int main(void)$/;"	f
