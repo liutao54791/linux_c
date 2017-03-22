@@ -36,6 +36,7 @@ RM             := rm -rf
 
 MIAN_DIR = $(shell pwd)
 LINUX_DIR = $(MIAN_DIR)/..
+
 #function for removing duplicates in a list
 remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-out $(firstword $1),$1))))
 
