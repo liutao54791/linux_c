@@ -4,7 +4,7 @@
 
 /**@brief Application main function.
  */
-int hello_world(void)
+int helloworld(void)
 {
     printf("hello libso\n");
 }

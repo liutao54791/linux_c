@@ -15,7 +15,7 @@ SOS = -shared -fpic
 
 all: libso.so
 libso.so :libso.cc 
-	$(XX) $(CFLAGS) libso.cc -o libso.so $(INCLUDES) $(SOS)
+	$(XX) $(CFLAGS) libso.cc -o libapp.so $(INCLUDES) $(SOS)
 
 clean:
 	rm -rf *.so 

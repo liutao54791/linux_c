@@ -20,6 +20,7 @@
 #include "person.h"
 #include "son.h"
 #include "grandson.h"
+#include "libso.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -577,6 +578,7 @@ int main(int argc, char* argv[])
         case '3':
         {
 /*********************************linux_c 进程间通信实验********************************/
+            helloworld();
             struct Node
             {
                 int a;
