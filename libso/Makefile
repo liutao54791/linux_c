@@ -13,8 +13,8 @@ INCLUDES = -I$(SOROOT)
 SOS = -shared -fpic 
 
 
-all: libso.so
-libso.so :libso.cc 
+all: libapp.so
+libapp.so :libso.cc 
 	$(XX) $(CFLAGS) libso.cc -o libapp.so $(INCLUDES) $(SOS)
 
 clean:
