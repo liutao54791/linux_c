@@ -252,9 +252,6 @@ int UART_Send(int fd, char *send_buf,int data_len)
     
 }
 
-
-
-
 int uart_test(int argc, char **argv)
 {
     int fd = FALSE;             
