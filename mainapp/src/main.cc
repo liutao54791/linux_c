@@ -17,10 +17,12 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <sys/ipc.h>
+
 #include "person.h"
 #include "son.h"
 #include "grandson.h"
 #include "libso.h"
+#include "uart.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
