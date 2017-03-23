@@ -2,12 +2,17 @@
 # Copyright (c) 2016 Compnay.
 # All rights, including trade secret rights, reserved.
 #
-all: lib-so main-app 
+all: lib-so lib-uart main-app
 
 lib-so:
 	@echo ">>>Start building libso."
 	@cd libso; make
 	@echo "<<<End building libso."
+
+lib-uart:
+	@echo ">>>Start building libuart."
+	@cd libuart; make
+	@echo "<<<End building libuart."
 
 main-app:
 	@echo ">>>Start building mainapp."
@@ -20,13 +25,18 @@ help:
 	@echo make
 	@echo make clean
 
-clean: libso-clean mainapp-clean
+clean: libso-clean libuart-clean mainapp-clean
 	rm c++_app
 	
 libso-clean:
 	@echo ">>>Start cleaning libso."
 	@cd libso; make clean
 	@echo "<<<End cleaning libso."
+libuart-clean:
+	@echo ">>>Start cleaning libuart."
+	@cd libuart; make clean
+	@echo "<<<End cleaning libuart."
+
 mainapp-clean:
 	@echo ">>>Start cleaning mainapp."
 	@cd mainapp; make clean

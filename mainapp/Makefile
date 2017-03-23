@@ -45,10 +45,10 @@ C_SOURCE_FILES += $(SRC_CODES_PATH)/main.cc
 C_SOURCE_FILES += $(SRC_CODES_PATH)/person.cc
 C_SOURCE_FILES += $(SRC_CODES_PATH)/son.cc
 C_SOURCE_FILES += $(SRC_CODES_PATH)/grandson.cc
-C_SOURCE_FILES += $(SRC_CODES_PATH)/uart.cc
 
 INC_PATHS += -I$(INCLUDES_PATH)
 INC_PATHS += -I$(LINUX_DIR)/libso
+INC_PATHS += -I$(LINUX_DIR)/libuart
 
 OBJECT_DIRECTORY = build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -63,6 +63,7 @@ C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.cc=.o) )
 
 LDFLAGS += -L$(LINUX_DIR)/libso -lapp
+LDFLAGS += -L$(LINUX_DIR)/libuart -luart
 
 vpath %.cc $(C_PATHS)
 

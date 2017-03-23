@@ -441,6 +441,7 @@ pthread_mutex_t mutex;
 
 void *pthread_func(void * arg)
 {
+    //pthread_func2 run early
     sleep(10);
     pid_t pid;
 
@@ -663,7 +664,6 @@ int main(int argc, char* argv[])
             {
                 printf("can not join thread %d\n", strerror(err));
             }
-
 
 //主线程先休眠让创建的线程先执行
             sleep(1);
