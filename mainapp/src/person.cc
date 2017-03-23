@@ -49,5 +49,25 @@ void CPerson::OutPutName(void)
 
 void CPerson::SayTruth(void)
 {
-    printf("father is a good person\n");
+    printf("we should be a good person\n");
+}
+
+void CPerson::play(void)
+{
+    printf("person need to play\n");
+}
+
+void CPerson::work(void)
+{
+    printf("person need to work\n");
+}
+
+void CPerson::study(void)
+{
+    printf("person nedd to study\n");
+}
+
+void CPerson::sleep(void)
+{
+    printf("person need to sleep\n");
 }

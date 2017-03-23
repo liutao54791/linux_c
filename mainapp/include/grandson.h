@@ -8,6 +8,10 @@
 class GrandSon:public CPerson
 {
 public:
+    void play(void);
+    void study(void);
+    void work(void);
+    void sleep(void);
     void SayTruth(void);
 };
 

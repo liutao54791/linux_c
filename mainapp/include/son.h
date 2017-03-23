@@ -8,20 +8,22 @@
 class CSon:public CPerson
 {
 public:
-    int m_Son_age;
-    int m_Son_salary;
-    
     CSon(void);
     ~CSon(void);
 
-    void callback(int a, void(*p)(int));
-    void SonSetAll(int m_age,int m_salay);
-    void OutPutName(void);
+    void play(void);
+    void study(void);
+    void work(void);
+    void sleep(void);
     void SayTruth(void);
 
 private:
+    int m_Son_age;
+    int m_Son_salary;
     bool m_flag;
     int  his_age;
+    void callback(int a, void(*p)(int));
+    void SonSetAll(int m_age,int m_salay);
 };
 
 #endif

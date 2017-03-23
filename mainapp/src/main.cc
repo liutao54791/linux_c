@@ -518,7 +518,6 @@ void share_callback(int a)
 
 }
 
-
 int main(int argc, char* argv[])
 {
     if (argc < 1)
@@ -536,7 +535,7 @@ int main(int argc, char* argv[])
             {
                  perror("open error");
             }
-        
+
             ftruncate(fd,0);
             lseek(fd, 0, SEEK_SET);
             write(fd, "0123456789",sizeof("0123456789"));
@@ -548,7 +547,7 @@ int main(int argc, char* argv[])
             FILE *fp1, *fp2;
             char fpbuf[1024];
             int nbytes;
-    
+
             if ((fp1 = fopen("/home/liutao.ex/flag.txt", "rb")) == NULL)
             {
                 perror("failed open fp1");
@@ -557,7 +556,7 @@ int main(int argc, char* argv[])
             {
                 perror("failed open fp2");
             }
-    
+
             while((nbytes = fread(fpbuf, sizeof(char), 1024, fp1)) > 0)
             {
                 if (fwrite(fpbuf, sizeof(char), nbytes, fp2) == -1)
@@ -570,7 +569,7 @@ int main(int argc, char* argv[])
             {
                 perror("failed to read");
             }
-    
+
             fclose(fp1);
             fclose(fp2);
             break;
@@ -585,6 +584,7 @@ int main(int argc, char* argv[])
                 int b;
                 int c;
             };
+
             char  buf[] = "hello hisense";
             char* cpbuf;
             cpbuf = (char*)malloc(sizeof(buf));
@@ -595,46 +595,41 @@ int main(int argc, char* argv[])
             m_node -> a = 10;
             m_node -> b = 11;
             m_node -> c = 12;
-        
+
             int val = 2;
-        
+
             while(val < 10)
             {
                 val ++;
                 std::cout << "val is " << val << std::endl;
             }
-        
-            std::cout << "struct val is " << m_node -> c << std::endl;
-        
-            free(m_node);
-    
-/***************************************c++实验***************************************/
-            CPerson m_person;
-            CSon m_son;
-    
-            CPerson* p = new CSon;
-            CPerson* q = new GrandSon;
-            p->SayTruth();
-            q->SayTruth();
-            m_person.set_my_age(15);
-            m_person.set_my_salary(100);
-            m_person.SayTruth();
-        
-            m_son.SonSetAll(10,100);
-            m_son.OutPutName();
-            m_son.callback(10, share_callback);
-            m_son.SayTruth();
 
+            std::cout << "struct val is " << m_node -> c << std::endl;
+
+            free(m_node);
+
+/***************************************c++实验***************************************/
+            GrandSon m_grandSon;
+            CSon m_son;
+
+            CPerson* p ;
+            p = &m_grandSon;
+            p->SayTruth();
+            p->OutPutName();
+
+            p = &m_son;
+            p->SayTruth();
+            p->OutPutName();
 
 /***************************************线程实验***************************************/
             pthread_t thread_id;
             pthread_t thread_id2;
             pthread_t thread_id3;
-    
+
             pid_t pid;
             int err;
             void* res;
-    
+
             pthread_mutex_init(&mutex, NULL);
             pid = getpid();
             printf("pid is %d\n", pid);
@@ -642,27 +637,27 @@ int main(int argc, char* argv[])
             {
                 perror("pthread create failed");
             }
-    
+
             if ((err = pthread_create(&thread_id2,NULL, pthread_func2, NULL)) != 0)
             {
                 perror("pthread create failed");
             }
-    
+
             pthread_attr_t attr;
             pthread_attr_init(&attr);
             pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    
+
             if ((err = pthread_create(&thread_id3,&attr, pthread_func3, NULL)) != 0)
             {
                 perror("pthread create failed");
             }
-    
+
             err = pthread_join(thread_id, &res);
             if (err != 0)
             {
                 printf("can not join thread %d\n", strerror(err));
             }
-    
+
             err = pthread_join(thread_id2, &res);
             if (err != 0)
             {
@@ -681,32 +676,32 @@ int main(int argc, char* argv[])
             {
                  perror("open error");
             }
-        
+
             ftruncate(fd1,0);
             lseek(fd1, 0, SEEK_SET);
             write(fd1, "0123456789",sizeof("0123456789"));
             printf("sizeof is %d\n", sizeof("0123456789"));
-    
+
             offset = lseek(fd1, 0 ,SEEK_CUR);
             printf("after write the offset is %d\n", offset);
             close(fd1);
-    
+
             fd1 = open("/home/liutao.ex/flag.txt",O_RDWR);
             if (fd1 < 0 )
             {
                  perror("open error");
             }
-    
+
             offset = lseek(fd1, 0 ,SEEK_CUR);                          //得到当前的位置
             printf("before read the offset is %d\n", offset);
-    
+
             offset = lseek(fd1, sizeof("0123456789")-5 ,SEEK_SET);     //设置位置
             printf("read count is %d\n", read(fd1,filebuf,sizeof(filebuf)));
-    
+
             offset = lseek(fd1, 0 ,SEEK_CUR);                          //得到当前的位置
             printf("after read the offset is %d\n", offset);
             printf("filebuf is %s\n", filebuf);
-    
+
             if (filebuf[0] == '0')
             {
                 printf("the function is closed \n");
@@ -714,7 +709,7 @@ int main(int argc, char* argv[])
             else{
                 printf("the function is open\n");
             }
-    
+
             close(fd1);
             char* pp = "123456789";
             std::string url;

@@ -25,13 +25,17 @@ public:
     
     CPerson(void);   //构造函数
     ~CPerson(void);  //析构函数
-    
+    virtual void play(void);
+    virtual void study(void);
+    virtual void work(void);
+    virtual void sleep(void);
+    virtual void SayTruth(void);
+
     int set_my_age(int m_age);
     int set_my_salary(int m_salary);
     void SetNodeName(const char *pchData);
     void OutPutName(void);
-    virtual void SayTruth(void);
-    
+
 private:
     
     int my_true_age;
