@@ -20,7 +20,9 @@
 
 #include "m_pthread.h"
 
-pthread_mutex_t mutex;
+pthread_mutex_t   mutex;
+pthread_cond_t      thread_cond;
+int my_num = 0;
 
 void *pthread_func(void * arg)
 {
@@ -30,21 +32,14 @@ void *pthread_func(void * arg)
 
     pid = getpid();
     printf("the pid is %d\n", pid);
+    pthread_mutex_lock(&mutex);
     while(1)
-    {   
-        int i = 0;
-        pthread_mutex_lock(&mutex);
-        
-        while(i != 100)
-        {
-            i ++;
-            printf("hello my thread\n");
-            sleep(1);
-
-        }
-
+    {
+        pthread_cond_wait(&thread_cond, &mutex);
+        printf("my_num  in func is %d\n", my_num);
+        my_num --;
         pthread_mutex_unlock(&mutex);
-        sleep(1);
+        printf("the mutex  in func is resleased\n");
     }
 }
 
@@ -53,16 +48,20 @@ void *pthread_func2(void* arg)
     //ARG* p = (ARG*)arg;
     //printf("arg1 is : %s, arg2 is : %d, arg3 is : %f\n", p->arg1, p->arg2,  p->arg3); 
     pid_t pid;
-    int i = 0;
-
     pid = getpid();
     printf("the pid is %d\n", pid);
-    while(i != 15)
+    while(1)
     {
         pthread_mutex_lock(&mutex);
-        printf("this the thread 2\n");
-        i ++;
-        pthread_mutex_unlock(&mutex);
+        printf("this is the thread 2\n");
+        if (my_num == 0)
+        {
+                pthread_cond_signal(&thread_cond);
+                printf("my_num  in func2 is %d\n", my_num);
+                my_num ++;
+                pthread_mutex_unlock(&mutex);
+        }
+
         sleep(1);
     }
     return NULL;
@@ -83,7 +82,7 @@ void *pthread_func3(void* arg)
     return NULL;
 }
 
-void m_pthread_main(void)
+void process_pthread(void)
 {
     /***************************************线程实验***************************************/
             pthread_t thread_id;
@@ -95,6 +94,7 @@ void m_pthread_main(void)
             void* res;
 
             pthread_mutex_init(&mutex, NULL); 
+            pthread_cond_init(&thread_cond, NULL);
             pid = getpid();
             printf("pid is %d\n", pid);
             if ((err = pthread_create(&thread_id,NULL, pthread_func, NULL)) != 0)

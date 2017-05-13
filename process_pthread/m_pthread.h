@@ -16,7 +16,7 @@ void *pthread_func(void * arg);
 
 void *pthread_func3(void* arg);
 
-void m_pthread_main(void);
+void process_pthread(void);
 
 #endif
 

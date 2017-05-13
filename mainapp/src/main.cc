@@ -23,6 +23,7 @@
 #include "grandson.h"
 #include "libso.h"
 #include "uart.h"
+#include "m_pthread.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -509,6 +510,7 @@ int main(int argc, char* argv[])
         {
 /*********************************linux_c 进程间通信实验********************************/
             helloworld();
+            process_pthread();
             struct Node
             {
                 int a;
