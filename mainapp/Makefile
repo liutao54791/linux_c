@@ -47,8 +47,9 @@ C_SOURCE_FILES += $(SRC_CODES_PATH)/son.cc
 C_SOURCE_FILES += $(SRC_CODES_PATH)/grandson.cc
 
 INC_PATHS += -I$(INCLUDES_PATH)
-INC_PATHS += -I$(LINUX_DIR)/libso
+INC_PATHS += -I$(LINUX_DIR)/libapp
 INC_PATHS += -I$(LINUX_DIR)/libuart
+INC_PATHS += -I$(LINUX_DIR)/process_pthread
 
 OBJECT_DIRECTORY = build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -62,8 +63,9 @@ C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.cc=.o) )
 
-LDFLAGS += -L$(LINUX_DIR)/libso -lapp
+LDFLAGS += -L$(LINUX_DIR)/libapp -lapp
 LDFLAGS += -L$(LINUX_DIR)/libuart -luart
+LDFLAGS += -L$(LINUX_DIR)/process_pthread -lprocess_pthread
 
 vpath %.cc $(C_PATHS)
 

@@ -2,17 +2,23 @@
 # Copyright (c) 2016 Compnay.
 # All rights, including trade secret rights, reserved.
 #
-all: lib-so lib-uart main-app
 
-lib-so:
+all: lib-app lib-uart lib-processpthread main-app 
+
+lib-app:
 	@echo ">>>Start building libso."
-	@cd libso; make
+	@cd libapp; make;cp libapp.so  ../lib
 	@echo "<<<End building libso."
 
 lib-uart:
 	@echo ">>>Start building libuart."
-	@cd libuart; make
+	@cd libuart; make;cp libuart.so  ../lib
 	@echo "<<<End building libuart."
+
+lib-processpthread:
+	@echo ">>>Start building lib-processpthread."
+	@cd process_pthread; make;cp libprocess_pthread.so  ../lib
+	@echo "<<<End building lib-processpthread."
 
 main-app:
 	@echo ">>>Start building mainapp."
@@ -25,17 +31,22 @@ help:
 	@echo make
 	@echo make clean
 
-clean: libso-clean libuart-clean mainapp-clean
+clean: libapp-clean libuart-clean mainapp-clean processpthread-clean
 	rm c++_app
+	rm -rf lib
 	
-libso-clean:
+libapp-clean:
 	@echo ">>>Start cleaning libso."
-	@cd libso; make clean
+	@cd libapp; make clean
 	@echo "<<<End cleaning libso."
 libuart-clean:
 	@echo ">>>Start cleaning libuart."
 	@cd libuart; make clean
 	@echo "<<<End cleaning libuart."
+processpthread-clean:
+	@echo ">>>Start cleaning lib-processpthread."
+	@cd process_pthread; make clean
+	@echo "<<<End cleaning lib-processpthread."
 
 mainapp-clean:
 	@echo ">>>Start cleaning mainapp."

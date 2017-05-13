@@ -1,4 +1,8 @@
 #!/bin/sh
 
 env_dir=$(pwd)
-export LD_LIBRARY_PATH="$env_dir/libso:$env_dir/libuart"
+if [ ! -d "$env_dir/lib" ];then
+	mkdir "$env_dir/lib"
+fi
+
+export LD_LIBRARY_PATH="$env_dir/lib"
