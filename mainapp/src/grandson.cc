@@ -4,6 +4,11 @@
 
 #include "grandson.h"
 
+GrandSon::GrandSon(void)
+{}
+
+GrandSon::~GrandSon(void)
+{}
 void GrandSon::SayTruth(void)
 {
     printf("grandson is a good child\n");

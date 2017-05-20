@@ -3,8 +3,12 @@
 # All rights, including trade secret rights, reserved.
 #
 
-all: lib-app lib-uart lib-processpthread main-app 
+all: lib-dir lib-app lib-uart lib-processpthread main-app 
 
+lib-dir:
+	@echo ">>>Start makedir lib."
+	@mkdir lib
+	@echo "<<<End makedir lib"
 lib-app:
 	@echo ">>>Start building libso."
 	@cd libapp; make;cp libapp.so  ../lib
@@ -52,6 +56,7 @@ mainapp-clean:
 	@echo ">>>Start cleaning mainapp."
 	@cd mainapp; make clean
 	@echo "<<<End cleaning mainapp."
+
 run:
 	$(NO_ECHO)./c++_app
 .PHONY: run

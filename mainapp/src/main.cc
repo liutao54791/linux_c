@@ -18,6 +18,7 @@
 #include <sys/shm.h>
 #include <sys/ipc.h>
 
+#include "compoent.h"
 #include "person.h"
 #include "son.h"
 #include "grandson.h"
@@ -508,16 +509,15 @@ int main(int argc, char* argv[])
         }
         case '3':
         {
-/*********************************linux_c 进程间通信实验********************************/
+/****************linux_c 进程间通信实验********************/
             helloworld();
-            process_pthread();
+
             struct Node
             {
                 int a;
                 int b;
                 int c;
             };
-
             char  buf[] = "hello hisense";
             char* cpbuf;
             cpbuf = (char*)malloc(sizeof(buf));
@@ -528,36 +528,31 @@ int main(int argc, char* argv[])
             m_node -> a = 10;
             m_node -> b = 11;
             m_node -> c = 12;
-
             int val = 2;
-
             while(val < 10)
             {
                 val ++;
                 std::cout << "val is " << val << std::endl;
             }
-
             std::cout << "struct val is " << m_node -> c << std::endl;
-
             free(m_node);
 
-/***************************************c++实验***************************************/
-            GrandSon m_grandSon;
-            CSon m_son;
+            process_pthread();   //ptread
 
-            CPerson* p ;
-            p = &m_grandSon;
-            p->SayTruth();
-            p->OutPutName();
+/************************c++实验******************************/
 
-            p = &m_son;
-            p->SayTruth();
-            p->OutPutName();
-
+            Compoent* m_compoent = Compoent::getInstance();
+            if (m_compoent == NULL)
+            {
+                printf("get compoent error\n");
+            }else{
+                printf("get compoent successful\n");
+            }
+            m_compoent->CreatCompoent();
 
 //主线程先休眠让创建的线程先执行
             sleep(1);
-/***************************************文件编程实验***************************************/
+/********************文件编程实验**********************************/
             int fd1;
             char filebuf[255];
             int offset;

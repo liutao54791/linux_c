@@ -8,6 +8,8 @@
 class GrandSon:public CPerson
 {
 public:
+	GrandSon(void);
+    ~GrandSon(void);
     void play(void);
     void study(void);
     void work(void);
