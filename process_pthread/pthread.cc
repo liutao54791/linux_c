@@ -23,8 +23,8 @@
 #include "m_pthread.h"
 
 pthread_mutex_t   mutex;
-pthread_cond_t      thread_cond;
-int my_num = 0;
+pthread_cond_t    thread_cond;
+int               my_num = 0;
 
 void *pthread_func(void * arg)
 {
@@ -37,6 +37,8 @@ void *pthread_func(void * arg)
 
     while(1)
     {
+        pthread_mutex_lock(&mutex);
+        printf("this is the thread 1\n");
         pthread_cond_wait(&thread_cond, &mutex);
         printf("my_num  in func is %d\n", my_num);
         Compoent* m_compoent = Compoent::getInstance();
@@ -49,6 +51,7 @@ void *pthread_func(void * arg)
         CSon& m_son = m_compoent->getson();
         m_son.play();
         my_num --;
+        sleep(15);
         pthread_mutex_unlock(&mutex);
         printf("the mutex  in func is resleased\n");
     }
@@ -63,7 +66,7 @@ void *pthread_func2(void* arg)
     printf("the pid in func2 is %d\n", pid);
     while(1)
     {
-        sleep(1);
+        sleep(50);
         pthread_mutex_lock(&mutex);
         printf("this is the thread 2\n");
         if (my_num == 0)
@@ -91,13 +94,22 @@ void *pthread_func3(void* arg)
 {
     pid_t pid;
     int i = 0;
+    struct timespec abstime;
+    struct timeval nowtime; 
 
     pid = getpid();
-    printf("the pid is %d\n", pid);
-    while(i != 10)
+    printf("the pid  in func3 is %d\n", pid);
+    while(1)
     {
-        printf("this is the third thread\n");
+        pthread_mutex_lock(&mutex);
+        gettimeofday(&nowtime, NULL);
+        abstime.tv_sec  = nowtime.tv_sec + 2;
+        abstime.tv_nsec = nowtime.tv_usec + 0;
+
+        printf("this is the thread 3\n");
+        pthread_cond_timedwait(&thread_cond, &mutex, &abstime);
         i ++;
+        pthread_mutex_unlock(&mutex);
     }
     return NULL;
 }

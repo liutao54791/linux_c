@@ -36,9 +36,12 @@ help:
 	@echo make clean
 
 clean: libapp-clean libuart-clean mainapp-clean processpthread-clean
+    ifeq (c++_app, $(wildcard c++_app))
 	rm c++_app
+    endif
+    ifeq (lib, $(wildcard lib))
 	rm -rf lib
-	
+    endif
 libapp-clean:
 	@echo ">>>Start cleaning libso."
 	@cd libapp; make clean
