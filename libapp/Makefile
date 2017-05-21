@@ -10,13 +10,20 @@ CFLAGS = -Wall -O -g
 #MYSQL_INC=/usr/local/shipu/mdpserver/msgsql_20161214/mysql_include
 SOROOT = $(shell pwd)
 SRCS += $(wildcard $(SOROOT)/*.cc) 
+
+OBJS        := $(SRCS:.cc=.o)
+
 INCLUDES += -I$(SOROOT)
 SOS = -shared -fpic 
 
+CFLAGS += $(INCLUDES)
+CFLAGS += $(SOS)
 
 all: libapp.so
 libapp.so : 
-	$(XX) $(CFLAGS) $(SRCS) -o libapp.so $(INCLUDES) $(SOS)
+	$(XX) $(CFLAGS) -c $(SRCS) 
+	$(XX) $(CFLAGS) -o libapp.so $(OBJS)
 
 clean:
-	rm -rf *.so 
+	rm -rf *.so
+	rm -rf *.o
