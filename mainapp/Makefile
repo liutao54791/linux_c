@@ -42,14 +42,10 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source application codes to all targets
 C_SOURCE_FILES += $(SRC_CODES_PATH)/main.cc
-C_SOURCE_FILES += $(SRC_CODES_PATH)/person.cc
-C_SOURCE_FILES += $(SRC_CODES_PATH)/son.cc
-C_SOURCE_FILES += $(SRC_CODES_PATH)/grandson.cc
-C_SOURCE_FILES += $(SRC_CODES_PATH)/compoent.cc
 
 INC_PATHS += -I$(INCLUDES_PATH)
 INC_PATHS += -I$(LINUX_DIR)/libapp
-INC_PATHS += -I$(LINUX_DIR)/libuart
+INC_PATHS += -I$(LINUX_DIR)/uart
 INC_PATHS += -I$(LINUX_DIR)/process_pthread
 
 OBJECT_DIRECTORY = build
@@ -65,7 +61,7 @@ C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.cc=.o) )
 
 LDFLAGS += -L$(LINUX_DIR)/libapp -lapp
-LDFLAGS += -L$(LINUX_DIR)/libuart -luart
+LDFLAGS += -L$(LINUX_DIR)/uart -luart
 LDFLAGS += -L$(LINUX_DIR)/process_pthread -lprocess_pthread
 
 vpath %.cc $(C_PATHS)

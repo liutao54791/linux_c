@@ -21,13 +21,13 @@ class Compoent
 public:
 	static Compoent* getInstance();
 	void CreatCompoent(void);
+	CPerson& getperson(void);
+    CSon& getson(void);
+    GrandSon& getgrandson(void);
 private:
     CPerson* m_person = NULL;
     CSon* m_son = NULL;
     GrandSon* m_grandson = NULL;
-    CPerson& getperson(void);
-    CSon& getson(void);
-    GrandSon& getgrandson(void);
 
 };
 

@@ -16,7 +16,7 @@ lib-app:
 
 lib-uart:
 	@echo ">>>Start building libuart."
-	@cd libuart; make;cp libuart.so  ../lib
+	@cd uart; make;cp libuart.so  ../lib
 	@echo "<<<End building libuart."
 
 lib-processpthread:
@@ -45,7 +45,7 @@ libapp-clean:
 	@echo "<<<End cleaning libso."
 libuart-clean:
 	@echo ">>>Start cleaning libuart."
-	@cd libuart; make clean
+	@cd uart; make clean
 	@echo "<<<End cleaning libuart."
 processpthread-clean:
 	@echo ">>>Start cleaning lib-processpthread."

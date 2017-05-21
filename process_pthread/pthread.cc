@@ -18,6 +18,8 @@
 #include <sys/shm.h>
 #include <sys/ipc.h>
 
+#include "compoent.h"
+
 #include "m_pthread.h"
 
 pthread_mutex_t   mutex;
@@ -37,6 +39,15 @@ void *pthread_func(void * arg)
     {
         pthread_cond_wait(&thread_cond, &mutex);
         printf("my_num  in func is %d\n", my_num);
+        Compoent* m_compoent = Compoent::getInstance();
+        if (m_compoent == NULL)
+        {
+            printf("get compoent error\n");
+        }else{
+            printf("get compoent successful\n");
+        }
+        CSon& m_son = m_compoent->getson();
+        m_son.play();
         my_num --;
         pthread_mutex_unlock(&mutex);
         printf("the mutex  in func is resleased\n");
@@ -59,6 +70,15 @@ void *pthread_func2(void* arg)
         {
             pthread_cond_signal(&thread_cond);
             printf("my_num  in func2 is %d\n", my_num);
+            Compoent* m_compoent = Compoent::getInstance();
+            if (m_compoent == NULL)
+            {
+                printf("get compoent error\n");
+            }else{
+                printf("get compoent successful\n");
+            }
+            GrandSon& m_grandson = m_compoent->getgrandson();
+            m_grandson.play();
             my_num ++;
             pthread_mutex_unlock(&mutex);
         }

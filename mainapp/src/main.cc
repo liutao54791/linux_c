@@ -537,8 +537,6 @@ int main(int argc, char* argv[])
             std::cout << "struct val is " << m_node -> c << std::endl;
             free(m_node);
 
-            process_pthread();   //ptread
-
 /************************c++实验******************************/
 
             Compoent* m_compoent = Compoent::getInstance();
@@ -548,8 +546,8 @@ int main(int argc, char* argv[])
             }else{
                 printf("get compoent successful\n");
             }
-            m_compoent->CreatCompoent();
 
+            process_pthread();   //ptread
 //主线程先休眠让创建的线程先执行
             sleep(1);
 /********************文件编程实验**********************************/
