@@ -88,31 +88,31 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
         case 0 : //不使用流控制
             options.c_cflag &= ~CRTSCTS;
             break;    
-            case 1 : //使用硬件流控制
-                options.c_cflag |= CRTSCTS;
-                break;
-            case 2 : //使用软件流控制
-                options.c_cflag |= IXON | IXOFF | IXANY;
-                break;
+        case 1 : //使用硬件流控制
+            options.c_cflag |= CRTSCTS;
+            break;
+        case 2 : //使用软件流控制
+            options.c_cflag |= IXON | IXOFF | IXANY;
+            break;
     }
      //设置数据位
     options.c_cflag &= ~CSIZE; //屏蔽其他标志位
     switch (databits){
         case 5 :
-                options.c_cflag |= CS5;
-                break;
-            case 6    :
-                options.c_cflag |= CS6;
-                break;
-            case 7    :
-                options.c_cflag |= CS7;
-                break;
-            case 8:
-                options.c_cflag |= CS8;
-                break;
-               default:
-                fprintf(stderr,"Unsupported data size\n");
-                return (FALSE);
+            options.c_cflag |= CS5;
+            break;
+        case 6    :
+            options.c_cflag |= CS6;
+            break;
+        case 7    :
+            options.c_cflag |= CS7;
+            break;
+        case 8:
+            options.c_cflag |= CS8;
+            break;
+        default:
+            fprintf(stderr,"Unsupported data size\n");
+            return (FALSE);
     }
      //设置校验位
     switch (parity) {
@@ -154,7 +154,7 @@ int UART_Set(int fd,int speed,int flow_ctrl,int databits,int stopbits,int parity
                 return (FALSE);
     }
     //修改输出模式，原始数据输出
-        options.c_oflag &= ~OPOST;
+    options.c_oflag &= ~OPOST;
     //设置等待时间和最小接收字符
     options.c_cc[VTIME] = 1; /* 读取一个字符等待1*(1/10)s */
     options.c_cc[VMIN] = 1; /* 读取字符的最少个数为1 */
@@ -180,8 +180,6 @@ int UART_Init(int fd, int speed,int flow_ctrlint ,int databits,int stopbits,char
            return TRUE;
        }
 }
-
-
 
 /*******************************************************************
 * 名称： UART0_Recv

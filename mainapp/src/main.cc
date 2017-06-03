@@ -25,6 +25,7 @@
 #include "libso.h"
 #include "uart.h"
 #include "m_pthread.h"
+#include "socket_http_download.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -538,7 +539,11 @@ int main(int argc, char* argv[])
             free(m_node);
 
 /************************c++实验******************************/
-
+            char* c;
+            void* p;
+            p = &c;
+            
+            printf("p is %x\n", p);
             Compoent* m_compoent = Compoent::getInstance();
             if (m_compoent == NULL)
             {
@@ -547,7 +552,10 @@ int main(int argc, char* argv[])
                 printf("get compoent successful\n");
             }
 
+            download_main("https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz");
+
             process_pthread();   //ptread
+
 //主线程先休眠让创建的线程先执行
             sleep(1);
 /********************文件编程实验**********************************/
