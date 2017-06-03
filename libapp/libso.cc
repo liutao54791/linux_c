@@ -8,3 +8,24 @@ int helloworld(void)
 {
     printf("hello libso\n");
 }
+
+int my_fgets(char* filename)
+{
+	FILE* fp;
+	char buf[1024];
+    if (filename != NULL)
+    {
+        if ((fp = fopen(filename,"r")) == NULL)
+        {
+            perror("open file errors");
+            return -1;
+        }
+        while(!feof(fp))
+        {
+            fgets(buf,sizeof(buf),fp);
+            printf("buf is %s", buf);
+        }
+        fclose(fp);
+    }
+    return 0;
+}

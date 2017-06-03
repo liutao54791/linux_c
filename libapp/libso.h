@@ -9,5 +9,6 @@
 /**@brief Application main function.
  */
 int helloworld(void);
+int my_fgets(char* filename);
 
 #endif

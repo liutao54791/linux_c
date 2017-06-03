@@ -551,8 +551,9 @@ int main(int argc, char* argv[])
             }else{
                 printf("get compoent successful\n");
             }
-
-            download_main("https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz");
+            
+            my_fgets("/home/ronald/linux_c/config.ini");
+            //download_main("https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz");
 
             process_pthread();   //ptread
 
