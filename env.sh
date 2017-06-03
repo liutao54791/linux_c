@@ -6,3 +6,7 @@ env_dir=$(pwd)
 #fi
 
 export LD_LIBRARY_PATH="$env_dir/lib"
+
+if [ -f "core_file" ]; then
+ ulimit -c unlimited
+fi

@@ -553,7 +553,7 @@ int main(int argc, char* argv[])
             }
             
             my_fgets("/home/ronald/linux_c/config.ini");
-            //download_main("https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz");
+            download_main(argv[2]);
 
             process_pthread();   //ptread
 

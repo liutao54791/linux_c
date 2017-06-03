@@ -164,19 +164,20 @@ int download_main(char *m_url)
         1. https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz
         2. http://img.ivsky.com/img/tupian/pre/201312/04/nelumbo_nucifera-009.jpg
     */
-    char url[2048] = "127.0.0.1";
     char domain[64] = {0};
     char ip_addr[16] = {0};
     int port = 80;
-    char file_name[256] = {0};
 
     if (m_url == NULL)
     {
         printf("Input a valid URL please\n");
         exit(0);
     }
-    else
-        strcpy(url, m_url);
+
+    char file_name[strlen(m_url)*sizeof(char)+2048];
+    char url[strlen(m_url)*sizeof(char)+2048];
+    //url = "127.0.0.1";
+    strcpy(url, m_url);
 
     puts("1: Parsing url...");
     parse_url(url, domain, &port, file_name);
@@ -200,7 +201,7 @@ int download_main(char *m_url)
     printf("FILENAME: %s\n\n", file_name);
 
     //设置http请求头信息
-    char header[2048] = {0};
+    char header[strlen(m_url)*sizeof(char)+2048];
     sprintf(header, \
             "GET %s HTTP/1.1\r\n"\
             "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\n"\
@@ -227,7 +228,7 @@ int download_main(char *m_url)
     addr.sin_addr.s_addr = inet_addr(ip_addr);
     addr.sin_port = htons(port);
 
-    //连接服务器
+    //连接服务器 TCP
     puts("3: Connect server...");
     int res = connect(client_socket, (struct sockaddr *) &addr, sizeof(addr));
     if (res == -1)
@@ -283,6 +284,9 @@ int download_main(char *m_url)
     pthread_t download_thread;
     pthread_create(&download_thread, NULL, download, (void *) &client_socket);
     pthread_join(download_thread, NULL);
+
+    free(buf);
+    free(response);
     return 0;
 }
 
