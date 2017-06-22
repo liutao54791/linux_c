@@ -20,7 +20,7 @@
 
 bool creat_fifo(mode_t  mode,char* fifo_name);
 
-bool read_fifo(char* readbuf, char* fifo_name);
+bool read_fifo(char* readbuf, char* fifo_name,int length);
 
 bool write_fifo(char* write_string , char* fifo_name);
 

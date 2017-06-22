@@ -22,10 +22,14 @@
 
 void release_sem(int semid,int WhitchSemToRelease);
 
-/* try to get sem */
+/*
+ try to get sem
+ WhitchSemToGet : The sem to get in the group
+ */
 void get_sem(int semid, int WhitchSemToGet);
 
 /*
+  function:creat a group of sems
   return value is semid !
   nsem : The num sem to creat !
  */

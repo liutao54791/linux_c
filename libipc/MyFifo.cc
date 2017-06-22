@@ -20,7 +20,7 @@ bool creat_fifo(mode_t  mode,char* fifo_name)
     }
 }
 
-bool read_fifo(char* readbuf, char* fifo_name)
+bool read_fifo(char* readbuf, char* fifo_name,int length)
 {
     int    fd;
     int    len;
@@ -31,7 +31,7 @@ bool read_fifo(char* readbuf, char* fifo_name)
         return false;
     }
 
-    while((len = read(fd, readbuf,1024)) > 0)
+    while((len = read(fd, readbuf,length)) > 0)
     {
         printf("read fifo is %s\n", readbuf);
     }
