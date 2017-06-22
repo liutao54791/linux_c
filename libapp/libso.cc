@@ -11,8 +11,8 @@ int helloworld(void)
 
 int my_fgets(char* filename)
 {
-	FILE* fp;
-	char buf[1024];
+    FILE* fp;
+    char buf[1024];
     if (filename != NULL)
     {
         if ((fp = fopen(filename,"r")) == NULL)
@@ -20,9 +20,9 @@ int my_fgets(char* filename)
             perror("open file errors");
             return -1;
         }
-        while(!feof(fp))
+        while(!feof(fp))                        //read all  lines
         {
-            fgets(buf,sizeof(buf),fp);
+            fgets(buf,sizeof(buf),fp);    //  read one ine
             printf("buf is %s", buf);
         }
         fclose(fp);

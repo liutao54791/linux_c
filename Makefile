@@ -3,7 +3,7 @@
 # All rights, including trade secret rights, reserved.
 #
 
-all: lib-dir lib-app lib-uart lib-processpthread main-app 
+all: lib-dir lib-app lib-uart lib-processpthread lib-ipc main-app 
 
 lib-dir:
 	@echo ">>>Start makedir lib."
@@ -24,6 +24,11 @@ lib-processpthread:
 	@cd process_pthread; make;cp libprocess_pthread.so  ../lib
 	@echo "<<<End building lib-processpthread."
 
+lib-ipc:
+	@echo ">>>Start building lib-app."
+	@cd libipc; make;cp libipc.so  ../lib
+	@echo "<<<End building lib-app."
+
 main-app:
 	@echo ">>>Start building mainapp."
 	@cd mainapp; make;cp c++_app ../;rm c++_app
@@ -35,7 +40,7 @@ help:
 	@echo make
 	@echo make clean
 
-clean: libapp-clean libuart-clean mainapp-clean processpthread-clean
+clean: libapp-clean libuart-clean mainapp-clean processpthread-clean libipc-clean
     ifeq (c++_app, $(wildcard c++_app))
 	rm c++_app
     endif
@@ -54,6 +59,10 @@ processpthread-clean:
 	@echo ">>>Start cleaning lib-processpthread."
 	@cd process_pthread; make clean
 	@echo "<<<End cleaning lib-processpthread."
+libipc-clean:
+	@echo ">>>Start cleaning lib-ipc."
+	@cd libipc; make clean
+	@echo "<<<End cleaning lib-ipc."
 
 mainapp-clean:
 	@echo ">>>Start cleaning mainapp."
