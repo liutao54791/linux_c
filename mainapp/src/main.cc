@@ -231,12 +231,29 @@ int main(int argc, char* argv[])
             }
             
             my_fgets("/home/ronald/linux_c/config.ini");
-            download_main(argv[2]);
+            if (argc >= 3)
+            {
+                download_main(argv[2]);
+            }
 
-            process_pthread();   //ptread
-
-//主线程先休眠让创建的线程先执行
-            sleep(1);
+            //process_pthread();   //ptread
+            pid_t pid;
+            if ((pid = fork()) == 0)
+            {
+                if (execl("process_one/proces_one", NULL) < 0)
+                {
+                    perror("exce errors");
+                }
+            }
+            while(1)
+            {
+                sleep(1);
+                printf("this is main process\n");
+            }
+            break;
+        }
+        case '4':
+        {
 /********************文件编程实验**********************************/
             int fd1;
             char filebuf[255];
@@ -287,9 +304,15 @@ int main(int argc, char* argv[])
             printf("the url is %s\n" ,url.c_str());
             break;
         }
+        case '5':
+        {
+
+        }
         default:
+        {
             printf("sholud not be here\n");
             break;
-    }
+        }
     return 0;
+}
 }
