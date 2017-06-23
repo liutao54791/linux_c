@@ -26,6 +26,7 @@
 #include "uart.h"
 #include "m_pthread.h"
 #include "socket_http_download.h"
+#include "message.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -230,9 +231,9 @@ int main(int argc, char* argv[])
                 printf("get compoent successful\n");
             }
             
-            my_fgets("/home/ronald/linux_c/config.ini");
             if (argc >= 3)
             {
+                my_fgets("/home/ronald/linux_c/config.ini");
                 download_main(argv[2]);
             }
 
@@ -245,10 +246,27 @@ int main(int argc, char* argv[])
                     perror("exec errors");
                 }
             }
+
+
+            struct msg_st* snddata;
+            int msgid;
+            //char sndbuf[5] = "end";
+            snddata->msg_type = 0;
+            //strncpy(snddata.message,sndbuf,sizeof(sndbuf));
+            snddata->message = "end";
+            if ((msgid = getMessage((key_t)1234,0666 | IPC_CREAT)) < 0)
+            {
+                printf("get message error\n");
+            }
+
             while(1)
             {
+                printf("this is main process and send data is %s\n",snddata->message);
+                if (sendMessage(msgid,(void*)snddata,1024,0))
+                {
+                    printf("main process send\n");
+                }
                 sleep(1);
-                printf("this is main process\n");
             }
             break;
         }

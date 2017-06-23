@@ -7,37 +7,37 @@ int getMessage(key_t key,int msgflag)
     msgid = msgget(key, msgflag);  
     if (msgid == -1)
     {
+        perror("get message error");
         return -1;
     }
     return msgid;
 }
 
-bool recMessage(int msgid,void* receiveMessage,int size,int receiveMsgType,int msgflag)
+bool recMessage(int msgid,void* receiveMessage,size_t size,long int receiveMsgType,int msgflag)
 {
-        if(msgrcv(msgid, (void*)&receiveMessage, size, receiveMsgType, msgflag) == -1)
+        if(msgrcv(msgid, (void*)&receiveMessage, size, receiveMsgType, msgflag) < 0)
         {
-            fprintf(stderr, "msgrcv failed with errno: %d\n", errno);
+            perror("msgrcv failed with errno\n");
             return  false;
         }
         return true;
 }
 
-bool sendMessage(int msgid,void* sendMessage,int size,int sendMessageType)
+bool sendMessage(int msgid,void* sendMessage,size_t size,int msgflag)
 {
-        if(msgsnd(msgid, (void*)&sendMessage, size, sendMessageType) == -1)
+        if(msgsnd(msgid, (void*)&sendMessage, size, msgflag) == -1)
         {
-            fprintf(stderr, "msgsnd failed\n");
+            perror("send error");
             return false;
         }
         return true;
 }
 
-
 bool ctrlMessage(int msgid, int msgflag)
 {
     if(msgctl(msgid, msgflag, 0) == -1)  
     {  
-        fprintf(stderr, "msgctl(IPC_RMID) failed\n");
+        perror("msgctl failed\n");
         return false;
     }
     return true;

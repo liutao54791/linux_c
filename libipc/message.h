@@ -22,17 +22,26 @@
 
 using namespace std;
 
+/*msgtyp 0 接收第一个消息*/
+/*msgtyp <0 接收类型等于或者小于msgtyp绝对值的第一个消息*/
+/*msgtyp >0 接收类型等于msgtyp的第一个消息*/
+/*msgflg 0 阻塞式接收消息，没有该类型的消息msgrcv函数一直阻塞等待*/
+/*msgflg IPC_NOWAIT 如果没有返回条件的消息调用立即返回，此时错误码为ENOMSG*/
+/*msgflg IPC_EXCEPT 与msgtype配合使用返回队列中第一个类型不为msgtype的消息*/
+/*msgflg IPC_NOERROR 如果队列中满足条件的消息内容大于所请求的size字节，则把该消息截断，截断部分将被丢弃*/
+
+
 struct msg_st  
 {  
     long int msg_type;
-    std::string message;
+    char*  message;
 };
 
 int getMessage(key_t key,int msgflag);
 
-bool recMessage(int msgid,void* receiveMessage,int size,int receiveMsgType,int msgflag);
+bool recMessage(int msgid,void* receiveMessage,size_t size,long int receiveMsgType,int msgflag);
 
-bool sendMessage(int msgid,void* sendMessage,int size,int sendMessageType);
+bool sendMessage(int msgid,void* sendMessage,size_t size,int msgflag);
 
 bool ctrlMessage(int msgid, int msgflag);
 

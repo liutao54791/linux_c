@@ -45,6 +45,7 @@ C_SOURCE_FILES += $(SRC_CODES_PATH)/main.cc
 
 INC_PATHS += -I$(INCLUDES_PATH)
 INC_PATHS += -I$(LINUX_DIR)/libapp
+INC_PATHS += -I$(LINUX_DIR)/libipc
 
 OBJECT_DIRECTORY = build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -59,6 +60,7 @@ C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.cc=.o) )
 
 LDFLAGS += -L$(LINUX_DIR)/libapp -lapp
+LDFLAGS += -L$(LINUX_DIR)/libipc -lipc
 
 vpath %.cc $(C_PATHS)
 
