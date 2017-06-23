@@ -34,14 +34,14 @@ using namespace std;
 struct msg_st  
 {  
     long int msg_type;
-    char*  message;
+    char  message[512];
 };
 
 int getMessage(key_t key,int msgflag);
 
-bool recMessage(int msgid,void* receiveMessage,size_t size,long int receiveMsgType,int msgflag);
+bool recMessage(int msgid,struct msg_st* receiveMessage,size_t size,long int receiveMsgType,int msgflag);
 
-bool sendMessage(int msgid,void* sendMessage,size_t size,int msgflag);
+bool sendMessage(int msgid,struct msg_st* sendMessage,size_t size,int msgflag);
 
 bool ctrlMessage(int msgid, int msgflag);
 

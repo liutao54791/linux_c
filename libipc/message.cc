@@ -13,9 +13,9 @@ int getMessage(key_t key,int msgflag)
     return msgid;
 }
 
-bool recMessage(int msgid,void* receiveMessage,size_t size,long int receiveMsgType,int msgflag)
+bool recMessage(int msgid,struct msg_st* receiveMessage,size_t size,long int receiveMsgType,int msgflag)
 {
-        if(msgrcv(msgid, (void*)&receiveMessage, size, receiveMsgType, msgflag) < 0)
+        if(msgrcv(msgid, (void*)receiveMessage, size, receiveMsgType, msgflag) < 0)
         {
             perror("msgrcv failed with errno\n");
             return  false;
@@ -23,9 +23,9 @@ bool recMessage(int msgid,void* receiveMessage,size_t size,long int receiveMsgTy
         return true;
 }
 
-bool sendMessage(int msgid,void* sendMessage,size_t size,int msgflag)
+bool sendMessage(int msgid,struct msg_st* sendMessage,size_t size,int msgflag)
 {
-        if(msgsnd(msgid, (void*)&sendMessage, size, msgflag) == -1)
+        if(msgsnd(msgid, (void*)sendMessage, size, msgflag) == -1)
         {
             perror("send error");
             return false;

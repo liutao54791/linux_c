@@ -248,12 +248,14 @@ int main(int argc, char* argv[])
             }
 
 
-            struct msg_st* snddata;
+            msg_st* snddata;
             int msgid;
-            //char sndbuf[5] = "end";
-            snddata->msg_type = 0;
-            //strncpy(snddata.message,sndbuf,sizeof(sndbuf));
-            snddata->message = "end";
+            char sndbuf[5] = "end";
+
+            snddata = (msg_st*)malloc(sizeof(msg_st));
+            memcpy(snddata->message,sndbuf,sizeof(sndbuf));
+            snddata->msg_type = 1;
+
             if ((msgid = getMessage((key_t)1234,0666 | IPC_CREAT)) < 0)
             {
                 printf("get message error\n");
@@ -262,12 +264,13 @@ int main(int argc, char* argv[])
             while(1)
             {
                 printf("this is main process and send data is %s\n",snddata->message);
-                if (sendMessage(msgid,(void*)snddata,1024,0))
+                if (sendMessage(msgid,snddata,512,0))
                 {
                     printf("main process send\n");
                 }
                 sleep(1);
             }
+            free(snddata);
             break;
         }
         case '4':

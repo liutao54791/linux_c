@@ -30,7 +30,7 @@ void* pthread_func(void* arg)
     while(1)
     {
         printf("this is process pthread\n");
-        recMessage(msgid,(void*)&recdata, 10, 0, 0) ;
+        recMessage(msgid,&recdata, 512, 0, 0);
         printf("receive data %s\n",recdata.message);
         if (strncmp(recdata.message ,"end", 3) == 0)
         {
