@@ -3,7 +3,7 @@
 # All rights, including trade secret rights, reserved.
 #
 
-OUTPUT_FILENAME  := c++_app
+OUTPUT_FILENAME  := process_main
 
 SRC_CODES_PATH   := src
 INCLUDES_PATH	 := include
@@ -118,6 +118,6 @@ cleanobj:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)/*.o
 
 run:
-	$(NO_ECHO)./c++_app
+	$(NO_ECHO)./process_main
 .PHONY: run
 

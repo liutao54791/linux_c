@@ -242,7 +242,7 @@ int main(int argc, char* argv[])
             {
                 if (execl("process_one/proces_one", NULL) < 0)
                 {
-                    perror("exce errors");
+                    perror("exec errors");
                 }
             }
             while(1)

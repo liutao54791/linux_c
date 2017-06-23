@@ -98,12 +98,7 @@ $(OBJECT_DIRECTORY)/%.o: %.s
 	@echo Compiling file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(ASMFLAGS) $(INC_PATHS) -c -o $@ $<
 
-finalize: echosize
-
-echosize:
-	-@echo '*****************************************************************'
-	$(NO_ECHO)$(SIZE) -t $(MAKEFILE_DIR)/$(OUTPUT_FILENAME)
-	-@echo '*****************************************************************'
+finalize:
 
 clean:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)

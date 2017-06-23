@@ -3,7 +3,7 @@
 # All rights, including trade secret rights, reserved.
 #
 
-all: lib-dir lib-app lib-uart lib-processpthread lib-ipc process-one main-app 
+all: lib-dir lib-app lib-uart lib-processpthread lib-ipc process-one main-process 
 
 lib-dir:
 	@echo ">>>Start makedir lib."
@@ -34,10 +34,10 @@ process-one:
 	@cd process_one; make
 	@echo "<<<End building process-one."
 
-main-app:
-	@echo ">>>Start building mainapp."
-	@cd mainapp; make;cp c++_app ../;rm c++_app
-	@echo "<<<End building mainapp."
+main-process:
+	@echo ">>>Start building main-process."
+	@cd mainprocess; make;cp process_main ../;rm process_main
+	@echo "<<<End building main-process."
 
 #target for printing all targets
 help:
@@ -45,9 +45,9 @@ help:
 	@echo make
 	@echo make clean
 
-clean: libapp-clean libuart-clean mainapp-clean processpthread-clean libipc-clean process-one-clean
-    ifeq (c++_app, $(wildcard c++_app))
-	rm c++_app
+clean: libapp-clean libuart-clean mainprocess-clean processpthread-clean libipc-clean process-one-clean
+    ifeq (process_main, $(wildcard process_main))
+	rm process_main
     endif
     ifeq (lib, $(wildcard lib))
 	rm -rf lib
@@ -74,12 +74,12 @@ process-one-clean:
 	@cd process_one; make clean
 	@echo "<<<End cleaning process-one."
 
-mainapp-clean:
+mainprocess-clean:
 	@echo ">>>Start cleaning mainapp."
-	@cd mainapp; make clean
+	@cd mainprocess; make clean
 	@echo "<<<End cleaning mainapp."
 
 run:
-	$(NO_ECHO)./c++_app
+	$(NO_ECHO)./process_main
 .PHONY: run
 
