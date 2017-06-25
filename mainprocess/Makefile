@@ -42,6 +42,7 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source application codes to all targets
 C_SOURCE_FILES += $(SRC_CODES_PATH)/main.cc
+C_SOURCE_FILES += $(SRC_CODES_PATH)/runprocess.cc
 
 INC_PATHS += -I$(INCLUDES_PATH)
 INC_PATHS += -I$(LINUX_DIR)/libapp

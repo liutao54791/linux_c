@@ -27,6 +27,7 @@
 #include "m_pthread.h"
 #include "socket_http_download.h"
 #include "message.h"
+#include "runprocess.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -238,15 +239,7 @@ int main(int argc, char* argv[])
             }
 
             //process_pthread();   //ptread
-            pid_t pid;
-            if ((pid = fork()) == 0)
-            {
-                if (execl("process_one/proces_one", NULL) < 0)
-                {
-                    perror("exec errors");
-                }
-            }
-
+            forkRunProcess("forkandrun","process_one/proces_one");
 
             msg_st* snddata;
             int msgid;
