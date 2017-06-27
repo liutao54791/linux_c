@@ -3,11 +3,12 @@
 # All rights, including trade secret rights, reserved.
 #
 
-all: lib-dir lib-app lib-uart lib-processpthread lib-ipc process-one main-process 
+all: make-dir lib-app lib-uart lib-processpthread lib-ipc process-one main-process copy
 
-lib-dir:
+make-dir:
 	@echo ">>>Start makedir lib."
 	@mkdir lib
+	@mkdir bin
 	@echo "<<<End makedir lib"
 lib-app:
 	@echo ">>>Start building libso."
@@ -31,14 +32,19 @@ lib-ipc:
 
 process-one:
 	@echo ">>>Start building process-one."
-	@cd process_one; make
+	@cd process_one; make;cp proces_one ../bin;rm proces_one
 	@echo "<<<End building process-one."
 
 main-process:
 	@echo ">>>Start building main-process."
-	@cd mainprocess; make;cp process_main ../;rm process_main
+	@cd mainprocess; make;cp process_main ../bin;rm process_main
 	@echo "<<<End building main-process."
-
+copy:
+	@echo ">>>Start copying."
+	@cp -rf lib /opt/mycode
+	@cp -rf bin /opt/mycode
+	@cp run.sh /opt/mycode
+	@echo "<<<End copying."
 #target for printing all targets
 help:
 	@echo following targets are available:
@@ -51,6 +57,9 @@ clean: libapp-clean libuart-clean mainprocess-clean processpthread-clean libipc-
     endif
     ifeq (lib, $(wildcard lib))
 	rm -rf lib
+    endif
+    ifeq (bin, $(wildcard bin))
+	rm -rf bin
     endif
 libapp-clean:
 	@echo ">>>Start cleaning libso."

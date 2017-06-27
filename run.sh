@@ -11,6 +11,6 @@ if [ -f "core_file" ]; then
  ulimit -c unlimited
 fi
 
-if [ -f "process_main" ]; then
- ./process_main 3
+if [ -f "bin/process_main" ]; then
+ ./bin/process_main 3
 fi
