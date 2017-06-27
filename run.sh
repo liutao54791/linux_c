@@ -5,12 +5,12 @@ env_dir=$(pwd)
 #       mkdir "$env_dir/lib"
 #fi
 
-export LD_LIBRARY_PATH="$env_dir/lib"
+export LD_LIBRARY_PATH="/opt/mycode/lib"
 
-if [ -f "core_file" ]; then
+if [ -f "/opt/mycode/core_file" ]; then
  ulimit -c unlimited
 fi
 
-if [ -f "bin/process_main" ]; then
- ./bin/process_main 3
+if [ -f "/opt/mycode/bin/process_main" ]; then
+ /opt/mycode/bin/process_main 3
 fi
