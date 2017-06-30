@@ -10,6 +10,7 @@ string s5(s4); //拷贝初始化，深拷贝字符串
 string s6("I am Ali"); //直接初始化
 string s7 = string(6, 'c'); //拷贝初始化，cccccc
 */
+template <typename T>
 
 int string_base(void)
 {
@@ -101,9 +102,30 @@ for (vector<string>::reverse_iterator iter = v6.rbegin(); iter != v6.rend(); ite
 }
 */
 
-void showvector(vector<T> v)
+template <typename T>
+void showVector(vector<T> v)
 {
-    for (vector<T>::iterator it = v.begin(); it != v.end(); it++)
+    for (typename vector<T>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        cout << *it;
+    }
+    cout << endl;
+}
+
+template <typename T>
+void showList(list<T> v)
+{
+    for (typename list<T>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        cout << *it;
+    }
+    cout << endl;
+}
+
+template <typename T>
+void showSet(set<T> v)
+{
+    for (typename set<T>::iterator it = v.begin(); it != v.end(); it++)
     {
         cout << *it;
     }
@@ -112,27 +134,32 @@ void showvector(vector<T> v)
 
 int myVector(void)
 {
-    vector<string> v6 = { "hi","my","name","is","lee" };
+    string mystring[] = {"hi","my","name","is","lee"};
+    size_t  mystringCount=sizeof(mystring)/sizeof(string);
+    vector<string> v6 (mystring,mystring + mystringCount);
     v6.resize(3);  //重新调整vector容量大小
-    showvector(v6);
+    showVector(v6);
 
-    vector<int> v5 = { 1,2,3,4,5 }; //列表初始化,注意使用的是花括号
+    int myInt[] = {1,2,3,4,5 };
+    size_t  myIntCount=sizeof(myInt)/sizeof(int);
+
+    vector<int> v5 (myInt, myInt + myIntCount); //列表初始化,注意使用的是花括号
     cout << v5.front() << endl; //访问第一个元素
     cout << v5.back() << endl; //访问最后一个元素
 
-    showvector(v5);
+    showVector(v5);
     v5.pop_back(); //删除最后一个元素
-    showvector(v5);
+    showVector(v5);
     v5.push_back(6); //加入一个元素并把它放在最后
-    showvector(v5);
+    showVector(v5);
     v5.insert(v5.begin()+1,9); //在第二个位置插入新元素
-    showvector(v5);
+    showVector(v5);
     v5.erase(v5.begin() + 3);  //删除第四个元素
-    showvector(v5);
+    showVector(v5);
     v5.insert(v5.begin() + 1, 7,8); //连续插入7个8
-    showvector(v5);
+    showVector(v5);
     v5.clear(); //清除所有内容
-    showvector(v5);
+    showVector(v5);
 
     return 0;
 }
@@ -143,26 +170,21 @@ set跟vector差不多，它跟vector的唯一区别就是，set里面的元素�
 那么这次添加操作就不执行。要想用set先加个头文件set。
 */
 
-void showset(set<T> v)
-{
-    for (set<T>::iterator it = v.begin(); it != v.end(); it++)
-    {
-        cout << *it;
-    }
-    cout << endl;
-}
-
 int mySet(void)
 {
-    set<int> s1{9,8,1,2,3,4,5,5,5,6,7,7 }; //自动排序，从小到大,剔除相同项
-    showset(s1);
-    set<string> s2{ "hello","sysy","school","hello" }; //字典序排序
-    showset(s2);
+    int a[] = {9,8,1,2,3,4,5,5,5,6,7,7 };
+    size_t  count=sizeof(a)/sizeof(int);
+    set<int> s1(a, a+count); //自动排序，从小到大,剔除相同项
+    showSet(s1);
+    string mystring[] = {"hello","sysy","school","hello"};
+    size_t  mystringCount=sizeof(mystring)/sizeof(string);
+    set<string> s2 (mystring,mystring+mystringCount ); //字典序排序
+    showSet(s2);
     s1.insert(9); //有这个值了，do nothing
-    showset(s1);
+    showSet(s1);
     s2.insert("aaa"); //没有这个字符串，添加并且排序
-    showset(s2);
-    
+    showSet(s2);
+
     return 0;
 }
 
@@ -175,23 +197,15 @@ list即双向链表的优点是插入和删除元素都比较快捷，缺点是�
 */
 
 
-void showlist(list<T> v)
-{
-    for (list<T>::iterator it = v.begin(); it != v.end(); it++)
-    {
-        cout << *it;
-    }
-    cout << endl;
-}
-
 int myList(void)
 {
-    list<int> l1{ 1,2,3,4,5,5,6,7,7 };
-    showlist(l1);
-    list<double> l2;
-    list<char> l3(10);
-    list<int> l4(5, 10); //将元素都初始化为10
-    showlist(l4);
+    int a[] = {1,2,3,4,5,5,6,7,7};
+    size_t  count=sizeof(a)/sizeof(int);
+    list<int> l1(a,a+count);
+    showList(l1);
+    list<int> l3(10);//将元素都初始化为0
+    list<int> l4(5, 10); 
+    showList(l4);
 
     return 0;
 }
@@ -203,7 +217,7 @@ map运用了哈希表地址映射的思想，也就是key-value的思想，来�
 
 要使用map得先加个头文件map。
 */
-
+/*
 void showmap(map<string, int> v)
 {
     for (map<string, int>::iterator it = v.begin(); it != v.end(); it++)
@@ -244,3 +258,4 @@ int myMap(void)
     m1.clear(); //清空全部
     return 0;
 }
+*/
