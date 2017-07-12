@@ -287,9 +287,6 @@ int download_main(char *m_url)
 
     free(buf);
     free(response);
+    printf("6: This download is over\n");
     return 0;
 }
-
-
-
-
