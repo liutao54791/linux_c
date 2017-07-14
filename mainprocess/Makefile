@@ -47,7 +47,7 @@ C_SOURCE_FILES += $(SRC_CODES_PATH)/runprocess.cc
 INC_PATHS += -I$(INCLUDES_PATH)
 INC_PATHS += -I$(LINUX_DIR)/libapp
 INC_PATHS += -I$(LINUX_DIR)/uart
-INC_PATHS += -I$(LINUX_DIR)/process_pthread
+INC_PATHS += -I$(LINUX_DIR)/libprocess_pthread
 INC_PATHS += -I$(LINUX_DIR)/libipc
 
 OBJECT_DIRECTORY = build
@@ -64,7 +64,7 @@ C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.cc=.o) )
 
 LDFLAGS += -L$(LINUX_DIR)/libapp -lapp
 LDFLAGS += -L$(LINUX_DIR)/uart -luart
-LDFLAGS += -L$(LINUX_DIR)/process_pthread -lprocess_pthread
+LDFLAGS += -L$(LINUX_DIR)/libprocess_pthread -lprocess_pthread
 LDFLAGS += -L$(LINUX_DIR)/libipc -lipc
 
 vpath %.cc $(C_PATHS)

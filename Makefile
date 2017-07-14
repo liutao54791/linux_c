@@ -22,7 +22,7 @@ lib-uart:
 
 lib-processpthread:
 	@echo ">>>Start building lib-processpthread."
-	@cd process_pthread; make;cp libprocess_pthread.so  ../lib
+	@cd libprocess_pthread; make;cp libprocess_pthread.so  ../lib
 	@echo "<<<End building lib-processpthread."
 
 lib-ipc:
@@ -71,7 +71,7 @@ libuart-clean:
 	@echo "<<<End cleaning libuart."
 processpthread-clean:
 	@echo ">>>Start cleaning lib-processpthread."
-	@cd process_pthread; make clean
+	@cd libprocess_pthread; make clean
 	@echo "<<<End cleaning lib-processpthread."
 libipc-clean:
 	@echo ">>>Start cleaning lib-ipc."
