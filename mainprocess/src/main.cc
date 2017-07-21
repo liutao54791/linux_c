@@ -28,6 +28,7 @@
 #include "socket_http_download.h"
 #include "message.h"
 #include "runprocess.h"
+#include "mystl.h"
 
 #define MAX_STR_SIZE   256
 #define BUFSZ          PIPE_BUF
@@ -320,7 +321,13 @@ int main(int argc, char* argv[])
         }
         case '5':
         {
+            myqueue();
+            myList();
+            mySet();
+            myVector();
 
+            getMyVector();
+        break;
         }
         default:
         {

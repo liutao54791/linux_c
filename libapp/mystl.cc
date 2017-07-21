@@ -10,7 +10,6 @@ string s5(s4); //拷贝初始化，深拷贝字符串
 string s6("I am Ali"); //直接初始化
 string s7 = string(6, 'c'); //拷贝初始化，cccccc
 */
-template <typename T>
 
 int string_base(void)
 {
@@ -164,6 +163,20 @@ int myVector(void)
     return 0;
 }
 
+int getMyVector( void)
+{
+    std::vector<int> v;
+    int Int[] = {1,2,3,4,5 };
+    size_t IntCount=sizeof(Int)/sizeof(int);
+    std::vector<int> vx (Int, Int + IntCount); //列表初始化,注意使用的是花括号
+    for (typename vector<int>::iterator it = vx.begin(); it != vx.end(); it++)
+    {
+        int i = *it;
+        cout <<  i;
+        v.push_back(i);
+    }
+    cout << endl;
+}
 /*
 set跟vector差不多，它跟vector的唯一区别就是，set里面的元素是有序的且唯一的，
 只要你往set里添加元素，它就会自动排序，而且，如果你添加的元素set里面本来就存在，
@@ -204,7 +217,7 @@ int myList(void)
     list<int> l1(a,a+count);
     showList(l1);
     list<int> l3(10);//将元素都初始化为0
-    list<int> l4(5, 10); 
+    list<int> l4(5, 10);  //cha ru 5 ge 10
     showList(l4);
 
     return 0;
@@ -259,3 +272,48 @@ int myMap(void)
     return 0;
 }
 */
+
+
+//单向队列 queue支持 empty() size() front() back() push() pop()
+//By MoreWindows(http://blog.csdn.net/MoreWindows)
+int myqueue(void)
+{
+    //可以使用list作为单向队列的容器，默认是使用deque的。
+    queue<int, list<int> > a;
+    queue<int>        b;
+    int i;
+
+    //压入数据
+    for (i = 0; i < 10; i++)
+    {
+        a.push(i);
+        b.push(i);
+    }
+
+    //单向队列的大小
+    printf("%d %d\n", a.size(), b.size());
+
+    //队列头和队列尾
+    printf("%d %d\n", a.front(), a.back());
+    printf("%d %d\n", b.front(), b.back());
+
+    //取单向队列项数据并将数据移出单向队列
+    while (!a.empty())
+    {
+        printf("%d ", a.front());
+        a.pop();
+    }
+    putchar('\n');
+    printf("%d ", a.size());
+    putchar('\n');
+
+    while (!b.empty())
+    {
+        printf("%d ", b.front());
+        b.pop();
+    }
+    putchar('\n');
+    printf("%d ", b.size());
+    putchar('\n');
+    return 0;
+}
