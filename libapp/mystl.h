@@ -17,7 +17,7 @@ int myVector(void);
 int myqueue(void);
 int myList(void);
 int mySet(void);
-int getMyVector(void);
+int getMyVector(std::vector<int> *v);
 /*
 int mySet(void);
 int myList(void);

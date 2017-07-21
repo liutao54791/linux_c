@@ -326,7 +326,14 @@ int main(int argc, char* argv[])
             mySet();
             myVector();
 
-            getMyVector();
+            std::vector<int> *v =  new vector<int>;
+            getMyVector(v);
+            for (typename vector<int>::iterator it = v->begin(); it != v->end(); it++)
+            {
+                int i = *it;
+                cout <<  i;
+            }
+            cout << endl;
         break;
         }
         default:
