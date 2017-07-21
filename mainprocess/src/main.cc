@@ -327,7 +327,11 @@ int main(int argc, char* argv[])
             myVector();
 
             std::vector<int> *v =  new vector<int>;
+            int a[5] = {1,2,2,3,3};
+            int (*mychar)[5] = &a;
             getMyVector(v);
+            printf("%d\n",(*v)[0] );
+            printf("%d\n",(*mychar)[1] );
             for (typename vector<int>::iterator it = v->begin(); it != v->end(); it++)
             {
                 int i = *it;
