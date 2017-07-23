@@ -10,8 +10,17 @@ string s5(s4); //拷贝初始化，深拷贝字符串
 string s6("I am Ali"); //直接初始化
 string s7 = string(6, 'c'); //拷贝初始化，cccccc
 */
+MyStl* MyStl::getMyStl(void)
+{
+    static MyStl* mystl = NULL;
+    if (mystl = NULL)
+    {
+        mystl = new MyStl();
+        return mystl;
+    }
+}
 
-int string_base(void)
+int MyStl::string_base(void)
 {
     string s1;//初始化字符串，空字符串
     string s2 = s1; //拷贝初始化，深拷贝字符串
@@ -102,7 +111,7 @@ for (vector<string>::reverse_iterator iter = v6.rbegin(); iter != v6.rend(); ite
 */
 
 template <typename T>
-void showVector(vector<T> v)
+void MyStl::showVector(vector<T> v)
 {
     for (typename vector<T>::iterator it = v.begin(); it != v.end(); it++)
     {
@@ -112,7 +121,7 @@ void showVector(vector<T> v)
 }
 
 template <typename T>
-void showList(list<T> v)
+void MyStl::showList(list<T> v)
 {
     for (typename list<T>::iterator it = v.begin(); it != v.end(); it++)
     {
@@ -122,7 +131,7 @@ void showList(list<T> v)
 }
 
 template <typename T>
-void showSet(set<T> v)
+void MyStl::showSet(set<T> v)
 {
     for (typename set<T>::iterator it = v.begin(); it != v.end(); it++)
     {
@@ -131,7 +140,7 @@ void showSet(set<T> v)
     cout << endl;
 }
 
-int myVector(void)
+int MyStl::myVector(void)
 {
     string mystring[] = {"hi","my","name","is","lee"};
     size_t  mystringCount=sizeof(mystring)/sizeof(string);
@@ -163,7 +172,7 @@ int myVector(void)
     return 0;
 }
 
-int getMyVector( std::vector<int> *v)
+int MyStl::getMyVector( std::vector<int> *v)
 {
     int Int[] = {1,2,3,4,5 };
     size_t IntCount=sizeof(Int)/sizeof(int);
@@ -183,7 +192,7 @@ set跟vector差不多，它跟vector的唯一区别就是，set里面的元素�
 那么这次添加操作就不执行。要想用set先加个头文件set。
 */
 
-int mySet(void)
+int MyStl::mySet(void)
 {
     int a[] = {9,8,1,2,3,4,5,5,5,6,7,7 };
     size_t  count=sizeof(a)/sizeof(int);
@@ -210,7 +219,7 @@ list即双向链表的优点是插入和删除元素都比较快捷，缺点是�
 */
 
 
-int myList(void)
+int MyStl::myList(void)
 {
     int a[] = {1,2,3,4,5,5,6,7,7};
     size_t  count=sizeof(a)/sizeof(int);
@@ -276,7 +285,7 @@ int myMap(void)
 
 //单向队列 queue支持 empty() size() front() back() push() pop()
 //By MoreWindows(http://blog.csdn.net/MoreWindows)
-int myqueue(void)
+int MyStl::myqueue(void)
 {
     //可以使用list作为单向队列的容器，默认是使用deque的。
     queue<int, list<int> > a;

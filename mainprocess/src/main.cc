@@ -316,20 +316,21 @@ int main(int argc, char* argv[])
             char* pp = "123456789";
             std::string url;
             url = pp;
-            printf("the url is %s\n" ,url.c_str());
+            printf("the url ais %s\n" ,url.c_str());
             break;
         }
         case '5':
         {
-            myqueue();
-            myList();
-            mySet();
-            myVector();
+            MyStl* mystl = MyStl::getMyStl();
+            mystl->myqueue();
+            mystl->myList();
+            mystl->mySet();
+            mystl->myVector();
 
             std::vector<int> *v =  new vector<int>;
             int a[5] = {1,2,2,3,3};
             int (*mychar)[5] = &a;
-            getMyVector(v);
+            mystl->getMyVector(v);
             printf("%d\n",(*v)[0] );
             printf("%d\n",(*mychar)[1] );
             for (typename vector<int>::iterator it = v->begin(); it != v->end(); it++)
