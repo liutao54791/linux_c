@@ -10,6 +10,8 @@ class GrandSon:public CPerson
 public:
 	GrandSon(void);
     ~GrandSon(void);
+    
+    //override
     void play(void);
     void study(void);
     void work(void);

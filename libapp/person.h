@@ -5,6 +5,7 @@
 
 //#include <iostream>
 #include <stdint.h>
+#include <string>
 
 class CPerson
 {
@@ -25,16 +26,25 @@ public:
     
     CPerson(void);   //构造函数
     ~CPerson(void);  //析构函数
+
+    //override
     virtual void play(void);
     virtual void study(void);
     virtual void work(void);
     virtual void sleep(void);
-    virtual void SayTruth(void);
+    virtual void SingSongs(void);
+
+    static int sharenum;
+    static void OutPutName(std::string mystring);
+
+    void SayTruth(void);
+
+    //example overwrite
+    virtual void ChangeWorld(int changenum);
 
     int set_my_age(int m_age);
     int set_my_salary(int m_salary);
     void SetNodeName(const char *pchData);
-    void OutPutName(void);
 
 private:
     

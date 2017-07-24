@@ -19,9 +19,9 @@ class CSon;
 class Compoent
 {
 public:
-	static Compoent* getInstance();
-	void CreatCompoent(void);
-	CPerson& getperson(void);
+    static Compoent* getInstance();
+    void CreatCompoent(void);
+    CPerson& getperson(void);
     CSon& getson(void);
     GrandSon& getgrandson(void);
 private:

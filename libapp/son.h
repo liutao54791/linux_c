@@ -11,12 +11,19 @@ public:
     CSon(void);
     ~CSon(void);
 
+    // override
     void play(void);
     void study(void);
     void work(void);
     void sleep(void);
-    void SayTruth(void);
 
+    //Class Person static has no influnce on this
+    void SayTruth(void);
+    
+    //example overwrite 
+    void ChangeWorld(void);
+
+    int set_age(int m_age);
 private:
     int m_Son_age;
     int m_Son_salary;

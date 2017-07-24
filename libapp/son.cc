@@ -6,6 +6,7 @@
 
 CSon::CSon(void)
 {
+    age = 20;
     m_flag = true;
 }
 
@@ -20,7 +21,6 @@ void CSon::SonSetAll(int m_age,int m_salary)
     salary = m_salary;
     printf("this is class son\r\n");
     printf("son age and salary is %d %d\r\n",age,salary);
-    
 }
 
 void CSon::callback(int a, void(*p)(int))
@@ -36,6 +36,8 @@ void CSon::callback(int a, void(*p)(int))
 
 void CSon::SayTruth(void)
 {
+    fprintf(stdout,"son age is %d\r\n",age);
+    fprintf(stdout,"son sharenum is %d\r\n",sharenum);
     printf("son is a good person\n");
 }
 
@@ -57,4 +59,16 @@ void CSon::study(void)
 void CSon::sleep(void)
 {
     printf("son has little time to sleep\n");
+}
+
+void CSon::ChangeWorld(void)
+{
+    printf("son ChangeWorld\n");
+}
+
+int CSon::set_age(int m_age)
+{
+    age = m_age;
+    printf("son set age\n");
+    return age;
 }

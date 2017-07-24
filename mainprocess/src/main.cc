@@ -223,16 +223,39 @@ int main(int argc, char* argv[])
             char* c;
             void* p;
             p = &c;
-            
+
             printf("p is %x\n", p);
             Compoent* m_compoent = Compoent::getInstance();
             if (m_compoent == NULL)
             {
                 printf("get compoent error\n");
             }else{
+                CSon& myson =  m_compoent->getson();
+                CPerson& myperson = m_compoent->getperson();
+
+                myson.SayTruth();
+                myperson.SayTruth();
+
+                myperson.set_my_age(50);
+                myson.SayTruth();
+                myperson.SayTruth();
+
+                myson.set_age(21);
+                myson.SayTruth();
+                myperson.SayTruth();
+
+                myson.sharenum = 10;
+                myson.SayTruth();
+                myperson.SayTruth();
+
+                myson.ChangeWorld();
+                myperson.ChangeWorld(10);
+
+                myson.OutPutName("SON");
+                myperson.OutPutName("FATHER");
                 printf("get compoent successful\n");
             }
-            
+
             if (argc >= 3)
             {
                 my_fgets("/home/ronald/linux_c/config.ini");

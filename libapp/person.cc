@@ -4,22 +4,27 @@
 #include <string.h>
 #include "person.h"
 
+using namespace std;
+
+int CPerson::sharenum = 100;
+
 CPerson::CPerson(void)
 {
     my_true_age = 26;
     my_true_salary = 8000;
-    
+    age = 40;
     fprintf(stdout,"this is class CPerson\r\n");
 }
+
 CPerson::~CPerson(void)
 {
     fprintf(stdout,"good bye class CPserson\r\n");
 }
+
 int CPerson::set_my_age(int m_age)
 {
     age = m_age;
-    fprintf(stdout,"father age is %d\r\n",age);
-    
+    fprintf(stdout,"father set age \r\n");
     return age;
 }
 
@@ -41,14 +46,17 @@ void CPerson::SetNodeName(const char *pchData)
 
 }
 
-void CPerson::OutPutName(void)
+void CPerson::OutPutName(std::string mystring)
 {
-    printf("hello CPerson\r\n");
+    std::string myname = mystring;
+    printf("Person Name is %s\r\n",myname.c_str());
 
 }
 
 void CPerson::SayTruth(void)
 {
+    fprintf(stdout,"father age is %d\r\n",age);
+    fprintf(stdout,"Person sharenum is %d\r\n",sharenum);
     printf("we should be a good person\n");
 }
 
@@ -70,4 +78,14 @@ void CPerson::study(void)
 void CPerson::sleep(void)
 {
     printf("person need to sleep\n");
+}
+
+void CPerson::SingSongs(void)
+{
+    printf("Person sing songs\n" );
+}
+
+void CPerson::ChangeWorld(int changenum)
+{
+    printf("Person changenum is %d\n",changenum);
 }
