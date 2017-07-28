@@ -28,6 +28,9 @@ void Compoent::CreatCompoent(void)
     {
         m_grandson = new GrandSon();
     }
+
+    Mapperson[ Son ] = (CPerson*)new CSon();
+    Mapperson[ Grandson ] = (CPerson*)new GrandSon();
 }
 
 CPerson& Compoent::getperson(void)

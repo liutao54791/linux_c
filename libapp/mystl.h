@@ -9,8 +9,15 @@
 #include <set>
 #include <vector>
 #include <queue>
+#include "person.h"
+#include "son.h"
+#include "grandson.h"
 
 using namespace std;
+
+class CPerson;
+class CSon;
+class GrandSon;
 
 class MyStl
 {
@@ -24,6 +31,8 @@ public:
 	int myList(void);
 	int mySet(void);
 	int getMyVector(std::vector<int> *v);
+	int addCperson(CPerson* person);
+
 protected:
 private:
 	template <typename T>
@@ -34,6 +43,8 @@ private:
 	
 	template <typename T>
 	void showSet(set<T> v);
+
+	std::vector<CPerson*> mypersons;
 };
 /*
 int mySet(void);

@@ -16,6 +16,12 @@ class GrandSon;
 class CPerson;
 class CSon;
 
+enum Mode
+{
+    Son,
+    Grandson
+};
+
 class Compoent
 {
 public:
@@ -24,10 +30,13 @@ public:
     CPerson& getperson(void);
     CSon& getson(void);
     GrandSon& getgrandson(void);
+    int addCpersonToMap(CPerson* person);
 private:
     CPerson* m_person = NULL;
     CSon* m_son = NULL;
     GrandSon* m_grandson = NULL;
+
+    std::map<Mode, CPerson*> Mapperson;
 
 };
 

@@ -200,7 +200,7 @@ int MyStl::mySet(void)
     showSet(s1);
     string mystring[] = {"hello","sysy","school","hello"};
     size_t  mystringCount=sizeof(mystring)/sizeof(string);
-    set<string> s2 (mystring,mystring+mystringCount ); //字典序排序
+    set<string> s2 (mystring,mystring+mystringCount );      //字典序排序
     showSet(s2);
     s1.insert(9); //有这个值了，do nothing
     showSet(s1);
@@ -325,4 +325,13 @@ int MyStl::myqueue(void)
     printf("%d ", b.size());
     putchar('\n');
     return 0;
+}
+
+
+int MyStl::addCperson(CPerson* person)
+{
+    if (person != NULL)
+    {
+        mypersons.push_back(person);
+    }
 }

@@ -2,6 +2,8 @@
 #define SON_H
 
 #include <stdint.h>
+#include "compoent.h"
+
 #include "person.h"
 
 //子类 类的继承 可以访问父类的public资源
