@@ -22,6 +22,14 @@ enum Mode
     Grandson
 };
 
+enum CompoentMode
+{
+    China,
+    America,
+    England,
+    France
+};
+
 class Compoent
 {
 public:
