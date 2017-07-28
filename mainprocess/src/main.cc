@@ -225,7 +225,7 @@ int main(int argc, char* argv[])
             p = &c;
 
             printf("p is %x\n", p);
-            Compoent* m_compoent = Compoent::getInstance();
+            Compoent* m_compoent = new Compoent();
             if (m_compoent == NULL)
             {
                 printf("get compoent error\n");

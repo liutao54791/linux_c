@@ -1,7 +1,17 @@
 
 #include "compoent.h"
 
-Compoent* Compoent::getInstance()
+Compoent::Compoent(void)
+{
+    printf("Compoent called\n");
+}
+
+Compoent::~Compoent(void)
+{
+    printf("~Compoent called\n");
+}
+
+/*Compoent* Compoent::getInstance()
 {
     static Compoent* m_compoent = NULL;
     if (m_compoent == NULL)
@@ -10,7 +20,7 @@ Compoent* Compoent::getInstance()
         m_compoent->CreatCompoent();
     }
     return m_compoent;
-}
+}*/
 
 void Compoent::CreatCompoent(void)
 {

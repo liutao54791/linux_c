@@ -25,7 +25,9 @@ enum Mode
 class Compoent
 {
 public:
-    static Compoent* getInstance();
+    //static Compoent* getInstance();
+    Compoent(void);
+    ~Compoent();
     void CreatCompoent(void);
     CPerson& getperson(void);
     CSon& getson(void);

@@ -41,7 +41,7 @@ void *pthread_func(void * arg)
         printf("this is the thread 1\n");
         pthread_cond_wait(&thread_cond, &mutex);
         printf("my_num  in func is %d\n", my_num);
-        Compoent* m_compoent = Compoent::getInstance();
+        Compoent* m_compoent = new Compoent();
         if (m_compoent == NULL)
         {
             printf("get compoent error\n");
@@ -73,7 +73,7 @@ void *pthread_func2(void* arg)
         {
             pthread_cond_signal(&thread_cond);
             printf("my_num  in func2 is %d\n", my_num);
-            Compoent* m_compoent = Compoent::getInstance();
+            Compoent* m_compoent = new Compoent();
             if (m_compoent == NULL)
             {
                 printf("get compoent error\n");
