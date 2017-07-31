@@ -3,35 +3,37 @@
 
 CompoentFrance::CompoentFrance()
 {
-
+     printf("CompoentFrance called\n");
 }
 
 CompoentFrance::~CompoentFrance()
 {
-
+     printf("~CompoentFrance called\n");
 }
 
-void CompoentFrance::start()
+bool CompoentFrance::start()
 {
-
+     printf("CompoentFrance start\n");
+     return true;
 }
 
-void CompoentFrance::stop()
+bool CompoentFrance::stop()
 {
-
+     printf("CompoentFrance stop\n");
+     return true;
 }
 
 int CompoentFrance::leave()
 {
-
+     printf("CompoentFrance leave\n");
 }
 
 int CompoentFrance::enter(string city, int times)
 {
-
+     printf("CompoentFrance enter\n");
 }
 
 int CompoentFrance::ChangeWorld()
 {
-
+     printf("CompoentFrance ChangeWorld\n");
 }

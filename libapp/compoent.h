@@ -10,25 +10,13 @@
 #include "person.h"
 #include "son.h"
 #include "grandson.h"
+#include "compoent-mode.h"
 
 using namespace std;
+class CompoentMode;
 class GrandSon;
 class CPerson;
 class CSon;
-
-enum Mode
-{
-    Son,
-    Grandson
-};
-
-enum ComMode
-{
-    China,
-    America,
-    England,
-    France
-};
 
 class Compoent
 {
@@ -37,16 +25,20 @@ public:
     Compoent(void);
     ~Compoent();
     void CreatCompoent(void);
+    int addCpersonToMap(CPerson* person);
+    bool startcompoents();
+    bool stopcompoents();
     CPerson& getperson(void);
     CSon& getson(void);
     GrandSon& getgrandson(void);
-    int addCpersonToMap(CPerson* person);
+
 private:
+    ComMode m_currentmode ;
     CPerson* m_person = NULL;
     CSon* m_son = NULL;
     GrandSon* m_grandson = NULL;
 
-    std::map<Mode, CPerson*> Mapperson;
+    std::map<ComMode, CompoentMode*> MapMode;
 
 };
 

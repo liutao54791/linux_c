@@ -13,8 +13,8 @@ public:
     CompoentEngland(void);
     ~CompoentEngland(void);
 
-    virtual void start();
-    virtual void stop();
+    virtual bool start();
+    virtual bool stop();
     virtual int leave();
     virtual int enter(string city, int times);
     virtual int ChangeWorld();

@@ -1,6 +1,11 @@
 
 #include "compoent.h"
 
+#include "compoent-england.h"
+#include "compoent-china.h"
+#include "compoent-america.h"
+#include "compoent-france.h"
+
 Compoent::Compoent(void)
 {
     printf("Compoent called\n");
@@ -24,6 +29,7 @@ Compoent::~Compoent(void)
 
 void Compoent::CreatCompoent(void)
 {
+    printf("Compoent::CreatCompoent called\n");
     if (m_person == NULL)
     {
         m_person = new CPerson();
@@ -39,8 +45,78 @@ void Compoent::CreatCompoent(void)
         m_grandson = new GrandSon();
     }
 
-    Mapperson[ Son ] = (CPerson*)new CSon();
-    Mapperson[ Grandson ] = (CPerson*)new GrandSon();
+    MapMode[ China ]     = (CompoentMode*)new CompoentChina();
+    MapMode[ America ] = (CompoentMode*)new CompoentAmerica();
+    MapMode[ England ] = (CompoentMode*)new CompoentEngland();
+    MapMode[ France ]   = (CompoentMode*)new CompoentFrance();
+}
+
+bool Compoent::startcompoents()
+{
+    printf("Compoent::startcompoents called\n");
+    bool status = false;
+    status = MapMode[ China ]->start();
+    if (!status)
+    {
+        printf("China start failed\n");
+        return false;
+    }
+    
+    status = MapMode[ America ]->start();
+    if (!status)
+    {
+        printf("America start failed\n");
+        return false;
+    }
+    
+    status = MapMode[ England ]->start();
+    if (!status)
+    {
+        printf("England start failed\n");
+        return false;
+    }
+    
+    status = MapMode[ France ]->start();
+    if (!status)
+    {
+        printf("France start failed\n");
+        return false;
+    }
+    return true;
+}
+
+bool Compoent::stopcompoents()
+{
+    printf("Compoent::stopcompoents called\n");
+    bool status = false;
+    status = MapMode[ China ]->stop();
+    if (!status)
+    {
+        printf("China stop failed\n");
+        return false;
+    }
+    
+    status = MapMode[ America ]->stop();
+    if (!status)
+    {
+        printf("America stop failed\n");
+        return false;
+    }
+    
+    status = MapMode[ England ]->stop();
+    if (!status)
+    {
+        printf("England stop failed\n");
+        return false;
+    }
+    
+    status = MapMode[ France ]->stop();
+    if (!status)
+    {
+        printf("France stop failed\n");
+        return false;
+    }
+    return true;
 }
 
 CPerson& Compoent::getperson(void)
