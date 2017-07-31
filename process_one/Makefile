@@ -3,7 +3,7 @@
 # All rights, including trade secret rights, reserved.
 #
 
-OUTPUT_FILENAME  := proces_one
+OUTPUT_FILENAME  := process_one
 
 SRC_CODES_PATH   := src
 INCLUDES_PATH	 := include
@@ -112,6 +112,6 @@ cleanobj:
 	$(NO_ECHO)$(RM) $(BUILD_DIRECTORIES)/*.o
 
 run:
-	$(NO_ECHO)./proces_one
+	$(NO_ECHO)./process_one
 .PHONY: run
 

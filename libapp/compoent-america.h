@@ -18,7 +18,7 @@ public:
     virtual int leave();
     virtual int enter(string city, int times);
     virtual int ChangeWorld();
-    
+
 private:
 
 };

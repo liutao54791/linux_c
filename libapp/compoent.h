@@ -22,7 +22,7 @@ enum Mode
     Grandson
 };
 
-enum CompoentMode
+enum ComMode
 {
     China,
     America,

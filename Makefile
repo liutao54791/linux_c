@@ -32,7 +32,7 @@ lib-ipc:
 
 process-one:
 	@echo ">>>Start building process-one."
-	@cd process_one; make;cp proces_one ../bin;rm proces_one
+	@cd process_one; make;cp process_one ../bin;rm process_one
 	@echo "<<<End building process-one."
 
 main-process:

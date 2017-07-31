@@ -263,7 +263,7 @@ int main(int argc, char* argv[])
             }
 
             //process_pthread();   //ptread
-            forkRunProcess("forkandrun","/opt/mycode/bin/proces_one");
+            forkRunProcess("forkandrun","/opt/mycode/bin/process_one");
 
             msg_st* snddata;
             int msgid;
