@@ -41,78 +41,80 @@ void Compoent::CreatCompoent(void)
     MapMode[ France ]   = (CompoentMode*)new CompoentFrance();
 }
 
-bool Compoent::startcompoents()
+ComStatus Compoent::startcompoents()
 {
     printf("Compoent::startcompoents called\n");
-    bool status = false;
+    ComStatus status = Comfailed;
     status = MapMode.at(China)->start();
-    if (!status)
+    if ( status != Comok )
     {
         printf("China start failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(America)->start();//      MapMode[ America ]->start();
-    if (!status)
+    if ( status != Comok )
     {
         printf("America start failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(England)->start();
-    if (!status)
+    if ( status != Comok )
     {
         printf("England start failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(France)->start();
-    if (!status)
+    if ( status != Comok )
     {
         printf("France start failed\n");
-        return false;
+        return status;
     }
-    return true;
+
+    return status;
 }
 
-bool Compoent::stopcompoents()
+ComStatus Compoent::stopcompoents()
 {
     printf("Compoent::stopcompoents called\n");
-    bool status = false;
+    ComStatus status = Comfailed;
     status = MapMode.at(China)->stop();
-    if (!status)
+    if ( status != Comok )
     {
         printf("China stop failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(America)->stop();
-    if (!status)
+    if ( status != Comok )
     {
         printf("America stop failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(England)->stop();
-    if (!status)
+    if ( status != Comok )
     {
         printf("England stop failed\n");
-        return false;
+        return status;
     }
     
     status = MapMode.at(France)->stop();
-    if (!status)
+    if ( status != Comok )
     {
         printf("France stop failed\n");
-        return false;
+        return status;
     }
-    return true;
+    return status;
 }
 
-ComMode Compoent::entermode(ComMode mode,string city, int times)
+ComStatus Compoent::entermode(ComMode mode,string city, int times)
 {
     printf("Compoent::enter\n");
 
+    ComStatus status = Comfailed;
     if ((mode >= Modeoff) && (mode <= France))
     {
         if (m_currentmode != Modeoff)
@@ -120,23 +122,24 @@ ComMode Compoent::entermode(ComMode mode,string city, int times)
             MapMode.at(m_currentmode)->leave(); 
         }
         m_currentmode = mode;
-        MapMode.at(m_currentmode)->enter(city,times);
-        return m_currentmode;
+        status = MapMode.at(m_currentmode)->enter(city,times);
+        return status;
     }
 
     printf("Compoent::enter error\n");
 }
 
-ComMode Compoent::leavemode(ComMode mode)
+ComStatus Compoent::leavemode(ComMode mode)
 {
 
     printf("Compoent::leave\n");
 
+    ComStatus status = Comfailed;
     if (m_currentmode != Modeoff)
     {
-        MapMode.at(m_currentmode)->leave();
+        status = MapMode.at(m_currentmode)->leave();
+        return status;
     }
-    return m_currentmode;
     printf("Compoent::leave error\n");
 
 }
@@ -169,5 +172,6 @@ GrandSon& Compoent::getgrandson(void)
     {
         return *m_grandson;
     }
+    
     printf("m_grandson is null\n");
 }

@@ -26,10 +26,10 @@ public:
     ~Compoent();
     void CreatCompoent(void);
     int addCpersonToMap(CPerson* person);
-    bool startcompoents();
-    bool stopcompoents();
-    ComMode  entermode(ComMode mode, string city, int times);
-    ComMode  leavemode(ComMode mode);
+    ComStatus startcompoents();
+    ComStatus stopcompoents();
+    ComStatus  entermode(ComMode mode, string city, int times);
+    ComStatus  leavemode(ComMode mode);
 
     CPerson& getperson(void);
     CSon& getson(void);

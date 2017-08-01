@@ -13,10 +13,10 @@ public:
     CompoentAmerica(void);
     ~CompoentAmerica(void);
 
-    virtual bool start();
-    virtual bool stop();
-    virtual int leave();
-    virtual int enter(string city, int times);
+    virtual ComStatus start();
+    virtual ComStatus stop();
+    virtual ComStatus leave();
+    virtual ComStatus enter(string city, int times);
     virtual int ChangeWorld();
 
 private:

@@ -11,26 +11,28 @@ CompoentChina::~CompoentChina()
     printf("~CompoentChina called\n");
 }
 
-bool CompoentChina::start()
+ComStatus CompoentChina::start()
 {
     printf("CompoentChina start\n");
-    return true;
+    return Comok;
 }
 
-bool CompoentChina::stop()
+ComStatus CompoentChina::stop()
 {
     printf("CompoentChina stop\n");
-    return true;
+    return Comok;
 }
 
-int CompoentChina::leave()
+ComStatus CompoentChina::leave()
 {
     printf("CompoentChina leave\n");
+    return Comok;
 }
 
-int CompoentChina::enter(string city, int times)
+ComStatus CompoentChina::enter(string city, int times)
 {
     printf("it is %d times that CompoentChina enter;  the city is %s\n",times, city.c_str());
+    return Comok;
 }
 
 int CompoentChina::ChangeWorld()

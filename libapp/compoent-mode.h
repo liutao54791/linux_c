@@ -13,15 +13,21 @@ enum ComMode
     England,
     France
 };
+
+enum ComStatus
+{
+    Comok = 0,
+    Comfailed
+};
 //子类 类的继承 可以访问父类的public资源
 class CompoentMode
 {
 public:
 	
-    virtual bool start() = 0;
-    virtual bool stop() = 0;
-    virtual int leave() = 0;
-    virtual int enter(std::string city, int times) = 0;
+    virtual ComStatus start() = 0;
+    virtual ComStatus stop() = 0;
+    virtual ComStatus leave() = 0;
+    virtual ComStatus enter(std::string city, int times) = 0;
     virtual int ChangeWorld() = 0;
 
 private:
