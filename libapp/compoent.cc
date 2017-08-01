@@ -125,6 +125,7 @@ ComMode Compoent::enter(ComMode mode,string city, int times)
     printf("Compoent::enter\n");
     if ((mode >= Modeoff) && (mode <= France))
     {
+        MapMode[ m_currentmode ]->leave();
         m_currentmode = mode;
         MapMode[ m_currentmode ]->enter(city,times);
         return m_currentmode;

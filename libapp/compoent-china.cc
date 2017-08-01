@@ -30,7 +30,7 @@ int CompoentChina::leave()
 
 int CompoentChina::enter(string city, int times)
 {
-    printf("CompoentChina enter\n");
+    printf("it is %d times that CompoentChina enter;  the city is %s\n",times, city.c_str());
 }
 
 int CompoentChina::ChangeWorld()
