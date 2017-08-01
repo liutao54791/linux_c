@@ -52,7 +52,7 @@ bool Compoent::startcompoents()
         return false;
     }
     
-    status = MapMode.at(America)->start();
+    status = MapMode.at(America)->start();//      MapMode[ America ]->start();
     if (!status)
     {
         printf("America start failed\n");
@@ -112,21 +112,24 @@ bool Compoent::stopcompoents()
 ComMode Compoent::entermode(ComMode mode,string city, int times)
 {
     printf("Compoent::enter\n");
+
     if ((mode >= Modeoff) && (mode <= France))
     {
         if (m_currentmode != Modeoff)
         {
-            MapMode.at(m_currentmode)->leave();
+            MapMode.at(m_currentmode)->leave(); 
         }
         m_currentmode = mode;
         MapMode.at(m_currentmode)->enter(city,times);
         return m_currentmode;
     }
+
     printf("Compoent::enter error\n");
 }
 
 ComMode Compoent::leavemode(ComMode mode)
 {
+
     printf("Compoent::leave\n");
 
     if (m_currentmode != Modeoff)
@@ -135,24 +138,29 @@ ComMode Compoent::leavemode(ComMode mode)
     }
     return m_currentmode;
     printf("Compoent::leave error\n");
+
 }
 
 CPerson& Compoent::getperson(void)
 {
+
     if (m_person != NULL)
     {
         return *m_person;
     }
     printf("m_person is null\n");
+
 }
 
 CSon& Compoent::getson(void)
 {
+
     if (m_son != NULL)
     {
         return *m_son;
     }
     printf("m_son is null\n");
+
 }
 
 GrandSon& Compoent::getgrandson(void)

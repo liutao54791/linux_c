@@ -229,8 +229,11 @@ int main(int argc, char* argv[])
             Compoent* m_compoent = new Compoent();
             if (m_compoent == NULL)
             {
+
                 printf("get compoent error\n");
+
             }else{
+
                 m_compoent->CreatCompoent();
                 m_compoent->startcompoents();
 
