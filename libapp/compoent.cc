@@ -7,6 +7,7 @@
 #include "compoent-france.h"
 
 Compoent::Compoent(void)
+:m_currentmode(Modeoff)
 {
     printf("Compoent called\n");
 }
@@ -117,6 +118,30 @@ bool Compoent::stopcompoents()
         return false;
     }
     return true;
+}
+
+ComMode Compoent::enter(ComMode mode,string city, int times)
+{
+    printf("Compoent::enter\n");
+    if ((mode >= Modeoff) && (mode <= France))
+    {
+        m_currentmode = mode;
+        MapMode[ m_currentmode ]->enter(city,times);
+        return m_currentmode;
+    }
+    printf("Compoent::enter error\n");
+}
+
+ComMode Compoent::leave(ComMode mode)
+{
+    printf("Compoent::leave\n");
+    if ((mode >= Modeoff) && (mode <= France))
+    {
+        m_currentmode = mode;
+        MapMode[ m_currentmode ]->leave();
+        return m_currentmode;
+    }
+    printf("Compoent::leave error\n");
 }
 
 CPerson& Compoent::getperson(void)

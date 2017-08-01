@@ -9,7 +9,7 @@
 
 enum ComMode
 {
-    Modeoff,
+    Modeoff = 0,
     China,
     America,
     England,
