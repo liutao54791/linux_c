@@ -2,9 +2,7 @@
 #define COMPONET_MODE_H
 
 #include <stdint.h>
-#include "compoent.h"
 #include <string>
-#include "person.h"
 
 
 enum ComMode

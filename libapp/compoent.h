@@ -28,8 +28,8 @@ public:
     int addCpersonToMap(CPerson* person);
     bool startcompoents();
     bool stopcompoents();
-    ComMode enter(ComMode mode,string city, int times);
-    ComMode leave(ComMode mode);
+    ComMode  entermode(ComMode mode, string city, int times);
+    ComMode  leavemode(ComMode mode);
 
     CPerson& getperson(void);
     CSon& getson(void);

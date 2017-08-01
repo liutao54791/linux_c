@@ -109,12 +109,15 @@ bool Compoent::stopcompoents()
     return true;
 }
 
-ComMode Compoent::enter(ComMode mode,string city, int times)
+ComMode Compoent::entermode(ComMode mode,string city, int times)
 {
     printf("Compoent::enter\n");
     if ((mode >= Modeoff) && (mode <= France))
     {
-        MapMode.at(m_currentmode)->leave();
+        if (m_currentmode != Modeoff)
+        {
+            MapMode.at(m_currentmode)->leave();
+        }
         m_currentmode = mode;
         MapMode.at(m_currentmode)->enter(city,times);
         return m_currentmode;
@@ -122,15 +125,15 @@ ComMode Compoent::enter(ComMode mode,string city, int times)
     printf("Compoent::enter error\n");
 }
 
-ComMode Compoent::leave(ComMode mode)
+ComMode Compoent::leavemode(ComMode mode)
 {
     printf("Compoent::leave\n");
-    if ((mode >= Modeoff) && (mode <= France))
+
+    if (m_currentmode != Modeoff)
     {
-        m_currentmode = mode;
         MapMode.at(m_currentmode)->leave();
-        return m_currentmode;
     }
+    return m_currentmode;
     printf("Compoent::leave error\n");
 }
 

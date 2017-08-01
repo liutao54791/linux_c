@@ -18,6 +18,7 @@
 #include <sys/shm.h>
 #include <sys/ipc.h>
 
+#include "compoent-mode.h"
 #include "compoent.h"
 #include "person.h"
 #include "son.h"
@@ -233,7 +234,8 @@ int main(int argc, char* argv[])
                 m_compoent->CreatCompoent();
                 m_compoent->startcompoents();
 
-                //m_compoent->enter();
+                m_compoent->entermode(China, "BeiJing", 5);
+                m_compoent->leavemode(China);
 
                 CSon& myson =  m_compoent->getson();
                 CPerson& myperson = m_compoent->getperson();
