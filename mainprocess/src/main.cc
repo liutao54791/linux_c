@@ -230,6 +230,11 @@ int main(int argc, char* argv[])
             {
                 printf("get compoent error\n");
             }else{
+                m_compoent->CreatCompoent();
+                m_compoent->startcompoents();
+
+                //m_compoent->enter();
+
                 CSon& myson =  m_compoent->getson();
                 CPerson& myperson = m_compoent->getperson();
 
