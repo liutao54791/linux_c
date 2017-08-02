@@ -41,7 +41,9 @@ main-process:
 	@echo "<<<End building main-process."
 copy:
 	@echo ">>>Start copying."
+	@cd commom; cp *.so ../lib
 	@cp -rf lib /opt/mycode
+	@cp -rf dbhome /opt/mycode
 	@cp -rf bin /opt/mycode
 	@cp run.sh /opt/mycode
 	@echo "<<<End copying."

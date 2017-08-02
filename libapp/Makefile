@@ -19,10 +19,12 @@ SOS = -shared -fpic
 CFLAGS += $(INCLUDES)
 CFLAGS += $(SOS)
 
+LDFLAGS += -ldl
+
 all: libapp.so
 libapp.so : 
 	$(XX) $(CFLAGS) -c $(SRCS) 
-	$(XX) $(CFLAGS) -o libapp.so $(OBJS)
+	$(XX) $(CFLAGS) -o libapp.so $(OBJS) $(LDFLAGS)
 
 clean:
 	rm -rf *.so
