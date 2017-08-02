@@ -51,21 +51,21 @@ ComStatus Compoent::startcompoents()
         printf("China start failed\n");
         return status;
     }
-    
+
     status = MapMode.at(America)->start();//      MapMode[ America ]->start();
     if ( status != Comok )
     {
         printf("America start failed\n");
         return status;
     }
-    
+
     status = MapMode.at(England)->start();
     if ( status != Comok )
     {
         printf("England start failed\n");
         return status;
     }
-    
+
     status = MapMode.at(France)->start();
     if ( status != Comok )
     {
@@ -86,21 +86,21 @@ ComStatus Compoent::stopcompoents()
         printf("China stop failed\n");
         return status;
     }
-    
+
     status = MapMode.at(America)->stop();
     if ( status != Comok )
     {
         printf("America stop failed\n");
         return status;
     }
-    
+
     status = MapMode.at(England)->stop();
     if ( status != Comok )
     {
         printf("England stop failed\n");
         return status;
     }
-    
+
     status = MapMode.at(France)->stop();
     if ( status != Comok )
     {
@@ -172,6 +172,6 @@ GrandSon& Compoent::getgrandson(void)
     {
         return *m_grandson;
     }
-    
+
     printf("m_grandson is null\n");
 }
