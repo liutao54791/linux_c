@@ -39,3 +39,10 @@ int CompoentChina::ChangeWorld()
 {
     printf("CompoentChina ChangeWorld\n");
 }
+
+int CompoentChina::creatWindow(int tableId)
+{
+    window newWindow =   creatNeWindow(tableId,true);
+    table_window.insert(make_pair<int,window*>(tableId,&newWindow));
+
+}

@@ -2,6 +2,7 @@
 #define COMPONET_CHINA_H
 
 #include <stdint.h>
+#include "libso.h"
 #include "person.h"
 #include "compoent.h"
 #include "compoent-mode.h"
@@ -19,8 +20,10 @@ public:
     virtual ComStatus enter(string city, int times);
     virtual int ChangeWorld();
     int CreatWalls();
-private:
+    int creatWindow(int tableId);
 
+private:
+    std::map<int, window*> table_window;
 };
 
 #endif

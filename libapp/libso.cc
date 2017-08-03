@@ -4,6 +4,7 @@
 
 /**@brief Application main function.
  */
+
 int helloworld(void)
 {
     printf("hello libso\n");
@@ -29,3 +30,15 @@ int my_fgets(char* filename)
     }
     return 0;
 }
+
+window creatNeWindow(int tableId,bool trans)
+{
+    static  int windowNum = 0;
+    window m_window;
+    m_window.tableid = tableId;
+    m_window.transparent = trans;
+    windowNum ++;
+
+    return m_window;
+}
+
