@@ -21,6 +21,7 @@ public:
     virtual int ChangeWorld();
     int CreatWalls();
     int creatWindow(int tableId);
+    int destroyWindow(int tableId);
 
 private:
     std::map<int, window*> table_window;

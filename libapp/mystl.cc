@@ -162,7 +162,9 @@ int MyStl::myVector(void)
     showVector(v5);
     v5.insert(v5.begin()+1,9); //在第二个位置插入新元素
     showVector(v5);
+    printf("the fouth element is %d\n", v5.at(3)); 
     v5.erase(v5.begin() + 3);  //删除第四个元素
+    printf("the fouth element is %d\n", v5.at(3)); 
     showVector(v5);
     v5.insert(v5.begin() + 1, 7,8); //连续插入7个8
     showVector(v5);

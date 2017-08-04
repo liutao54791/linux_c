@@ -46,3 +46,8 @@ int CompoentChina::creatWindow(int tableId)
     table_window.insert(make_pair<int,window*>(tableId,&newWindow));
 
 }
+
+int CompoentChina::destroyWindow(int tableId)
+{
+    table_window.erase(tableId);
+}
