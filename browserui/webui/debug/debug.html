@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> hisense://debug </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type="text/css">
+      div{
+          font-family:Arial;
+          border:3px solid #379082;
+          border-radius:10px;
+          padding:3px 3px;
+          width:530px;
+      }
+      p{
+          font-size: large;
+      }
+      input{
+          width: 393px;
+          height: 30px;
+          font-size: large;
+      }
+      select{
+          width: 393;
+          height: 30;
+          font-size: large;
+      }
+      button{
+          width: 116px;
+          height: 31px;
+      }
+  </style>
+  <script type="text/javascript">
+  var installedApps=[];
+  function load(){
+      var jsObj=getInstalledAppJsonObj();
+      /*
+      var str='{"AppInfo":[{"AppId":"aadebug","Thumb":"www.baidu.com","Icon_96":"www.sina.com","Image":"www.iqiyi.com","URL":"www.qq.com","AppName":"aa","Title":"","IconURL":"","StartCommand":"","InstallTime":"2015-11-26","RunTimes":0,"StoreType":"foxxum","PreInstall":false},{"AppId":"akdebug","Thumb":"aaaaaaaa","Icon_96":"dddddddd","Image":"ffffffff","URL":"rrrrrrrr","AppName":"ak","Title":"ak","IconURL":"eeeeeee","StartCommand":"rrrrrrrr","InstallTime":"2015-11-26","RunTimes":0,"StoreType":"foxxum","PreInstall":false},{"AppId":"awaydebug","Thumb":"http://www.baidu.com/img/bd_logo1.png","Icon_96":"http://www.baidu.com/img/bg_logo1.png","Image":"http://www.baidu.com/img/bd_logo1.png","URL":"http://www.baidu.com","AppName":"away","Title":"away","IconURL":"http://www.baidu.com/img/bg_logo1.png","StartCommand":"http://www.baidu.com","InstallTime":"2015-11-26","RunTimes":0,"StoreType":"foxxum","PreInstall":false}]}';
+      var jsObj=eval("("+ str +")");
+      */
+      var i;
+      for(i=0;i<jsObj.AppInfo.length;i++){
+          if(jsObj.AppInfo[i].AppId.indexOf("debug")>=0){
+              installedApps.push(jsObj.AppInfo[i]);
+              document.getElementById("comb").options.add(new Option(jsObj.AppInfo[i].AppName,i));
+
+          }
+      }
+      if(installedApps.length>0){
+          fill(installedApps[0]);
+      }
+      document.getElementById("console").innerText="The items with ' * ' must be necessary !\n\rThe App Url must start with 'http' or 'https'.\n\r";
+      document.getElementById("console").innerText+="You have installed "+ installedApps.length +" apps.\n\r";
+      for(i=0;i<installedApps.length;i++){
+          document.getElementById("console").innerText+=(i+1)+". App Name: "+installedApps[i].AppName+";  Thumbnail: "+installedApps[i].Thumb+";  IconSmall: "+installedApps[i].Icon_96+";  IconLarge: "+installedApps[i].IconURL+ ";  App Url: "+installedApps[i].StartCommand+";  Install Time: "+installedApps[i].InstallTime+"\n\r";
+      }
+  }
+  function fill(app){
+      document.getElementById("appName").value=app.AppName;
+      document.getElementById("thumbnail").value=app.Thumb;
+      document.getElementById("iconSmall").value=app.Icon_96;
+      document.getElementById("iconBig").value=app.IconURL;
+      document.getElementById("appUrl").value=app.URL;
+  }
+  function save1(){
+      var appName= document.getElementById("appName").value;
+	  var thumbnail=document.getElementById("thumbnail").value;
+	  var iconSmall=document.getElementById("iconSmall").value;
+	  var iconBig=document.getElementById("iconBig").value;
+      var AppUrl=document.getElementById("appUrl").value;
+	  var appId=appName+"debug";
+      if(thumbnail==""){
+          thumbnail="/opt/webengine/opera_dir/webui/debug/web_default_sreenshot.png";
+      }
+      if(iconSmall==""){
+          iconSmall="/opt/webengine/opera_dir/webui/debug/web_default_sreenshot.png";
+      }
+      if(iconBig==""){
+          iconBig="/opt/webengine/opera_dir/webui/debug/web_default_sreenshot.png";
+      }
+      for(i=0;i<installedApps.length;i++){
+          if(AppUrl==installedApps[i].URL){
+              if(appName!=installedApps[i].AppName){
+                  document.getElementById("console").innerText+="You have installed the app of "+AppUrl+ " , please provide another one!\n\r";
+                  return;
+              }
+          }
+      }
+      if(appName!=""&&AppUrl!=""&&AppUrl.indexOf("http")==0){
+          Hisense_uninstallApp(appId,uninstallCallBack);
+          Hisense_installApp(appId,appName,thumbnail,iconSmall,iconBig,AppUrl,installCallBack);
+      }else{
+          if(appName==""||AppUrl==""){
+              document.getElementById("console").innerText+="App Name and App Url could not be null !\n\r";
+          }
+          if(AppUrl.indexOf("http")<0){
+              document.getElementById("console").innerText+="The App Url must start with 'http' or 'https'.\n\r";
+          }
+      }
+  }
+  function installCallBack(res){
+
+      if(res==0){
+          document.getElementById("console").innerText+="INSTALLATION COMPLETED!\n\r";
+      }else{
+          document.getElementById("console").innerText+="INSTALLATION FAILED!\n\r";
+      }
+
+  }
+  function uninstallCallBack(res){
+      if(res==0){
+          document.getElementById("console").innerText+="UNINSTALLATION COMPLETED!\n\r";
+      }else{
+          document.getElementById("console").innerText+="UNINSTALLATION FAILED!\n\r";
+      }
+  }
+  function change(){
+      var selectedApp=installedApps[document.getElementById("comb").options.selectedIndex];
+      fill(selectedApp);
+
+  }
+  </script>
+  </head>
+  <body onload="load()">
+        <div style="position: absolute;top: 10px;left: 50px;">
+          <p style="font-size: large;">Installed Apps</p>
+          <select id ="comb" style=" width:393px;" onchange="change()"></select>
+        </div>
+        <div style="
+        position: absolute;
+        top: 112px;
+        left: 50px;
+        ">
+          <p>*App Name <input type="text" id="appName"></p>
+        </div>
+        <div style="
+        position: absolute;
+        top: 199px;
+        left: 50px;
+        ">
+          <p>Thumbnail <input  type="text" id="thumbnail"></p>
+        </div>
+        <div style="position: absolute;top: 286px;left: 50px;">
+          <p>IconSmall <input  type="text" id="iconSmall"></p>
+        </div>
+        <div style="position: absolute;top: 372px;left: 50px;">
+          <p>IconLarge <input  type="text" id="iconBig"></p>
+        </div>
+        <div style="position: absolute;top: 458px;left: 50px;">
+          <p>*App Url <input  type="text" id="appUrl"></p>
+        </div>
+        <button id="save1" style="position: absolute;top: 556px;left: 255px; width:116px;height:31px;"   onclick="save1()">INSTALL</button>
+
+        <div id="console" style="
+            position: absolute;
+            top: 12px;
+            left: 691px;
+            width: 560px;
+            height: 620px;
+            background-color: antiquewhite;
+            font-size: x-small;">
+        </div>
+
+  </body>
+</html>

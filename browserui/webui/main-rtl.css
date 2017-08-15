@@ -1,0 +1,207 @@
+/* Extra rules for RTL. Only injected when language code
+   is RTL. See i18n._rtlLanguages for language whitelist. */
+@font-face {
+    font-family: 'Arial','Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: url('fonts/OpenSans-Light.ttf');
+}
+@font-face {
+    font-family: 'Arial','Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/OpenSans-Regular.ttf');
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Arial","Open Sans";
+    overflow: hidden;
+}
+.popup button {
+    text-align: right;
+    direction: rtl;
+    text-indent: 10px;
+    padding-left: 80px;
+}
+.button-right-arrow {
+    text-indent: 70px !important;
+}
+::-webkit-input-placeholder,
+.popup-input span,
+.clear_history span,
+.tab span,
+.new_tab span,
+.close_tab span,
+.bookmark span,
+.add_bookmark span,
+.edit_bookmarks span,
+.done_bookmarks span,
+.history_item span,
+.speed-dial-entry,
+.edit_speed_dial,
+.add_speed_dial {
+    text-align: right;
+    direction: rtl;
+}
+#opera-help-popup .popup-caption,
+#about-popup .popup-caption,
+#help-popup .popup-caption,
+#caption-section-settings {
+    text-align: right;
+}
+.popup,
+.speeddials,
+#sections,
+#elements,
+#navigation {
+    direction: rtl;
+}
+.speeddials ul li {
+    float: right;
+}
+#url {
+    padding: 0 55px 0 20px;
+    margin-left: -12px;
+    margin-right: 12px;
+}
+#management_exit{
+    right: 1384px;
+}
+#goToUrl{
+    transform: rotate(180deg);
+    background: -webkit-linear-gradient(bottom, #FCFCFC, #98A0A2) !important;
+}
+#speeddial-header #history_header {
+    left: 31%;
+}
+#speeddial-header #bookmarks_header {
+    left: 55%;
+}
+.speeddials-anim-wrapper {
+    left:37px;
+}
+.speeddial_scrollBox {
+    left:120px;
+}
+#history_page{
+    direction:rtl;
+}
+#history_date{
+    left: 1630px;
+}
+.history_separator_a{
+    left: 1630px;
+}
+.history_separator_b{
+    left: 1629px;
+}
+.history_scrollBox {
+    left: 90px;
+}
+#history_detail li{
+    text-align: right;
+}
+#history_detail {
+    left: 76px;
+}
+.history_date {
+    left: 1330px;
+}
+#clear_all {
+    right: 1400px;
+}
+#add-to-speed-dial-popup > div > div {
+    width: 56%;
+}
+#clear-all-popup > div > div {
+    width: 30%;
+}
+.select-options {
+    margin-left: 326px;
+}
+.clear-select-options {
+    margin-top: -36px;
+    margin-right: 502px;
+}
+#bookmark_popup_input{
+    position: relative;
+    left: 69px;
+}
+#add-to-speed-dial-button{
+    width: 60px;
+    height: 50px;
+    border: 1px solid #666;
+    top: 11px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    left: -1010px;
+    text-indent: 0;
+}
+#pop_up_tip{
+    width: 92%;
+    height: 120px;
+    top: 50px;
+}
+.button-right-arrow:after {
+    -webkit-transform: scaleX(-1);
+    left: 10px;
+    right: auto;
+}
+.popup button {
+    padding-right: 8px;
+    padding-left:22px;
+    text-indent: 10px !important;
+}
+.popup button:before{
+    left: auto;
+    right: 10px;
+}
+#recommended {
+    left: 475px;
+}
+#url_tip{
+    float: right;
+}
+#address_span{
+    float: right;
+    color: #666;
+}
+.button-ok,
+.button-cancel {
+    padding-right: 0 !important;
+    text-align: center;
+}
+#security-info-popup > div > div {
+    text-align: right;
+    padding-left: 13px;
+    padding-right: 60px;
+}
+#security-info:before {
+    left: auto;
+    right: -70px;
+}
+.popup-input span {
+    border-right:0;
+    border-left: 1px black solid;
+}
+#help-popup .popup-caption:before,
+#caption-section-settings:before,
+#opera-help-popup .popup-caption:before,
+#about-popup .popup-caption:before,
+.popup button:before {
+    left: auto;
+    right: 10px;
+}
+
+.buttons-no-icons button,
+#settings-popup button,
+#help-popup button,
+#zoom-popup button {
+    padding: 0 10px 0 15px !important;
+}
+
+#elements li span {
+    text-overflow: clip;
+}

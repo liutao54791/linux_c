@@ -1,0 +1,399 @@
+<html>
+
+    <head>
+        <link type="text/css" rel="stylesheet" href="main.css">
+        <link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    </head>
+
+    <body>
+        <div class="background-dummy"></div>
+        <div class="speeddial">
+            <div id="speeddial-bg"></div>
+            <div id="speeddial-header" class="line">
+                <!--<div class="fakeinput"></div>-->
+                <button id="bookmarks_header" class="bookmark_history_header"  tabindex="1" data-translation="Bookmarks" data-state="BOOKMARKS_HISTORY_NAVIGATION"></button>
+                <button id="history_header" class="bookmark_history_header" tabindex="1" data-translation="History" data-state="BOOKMARKS_HISTORY_NAVIGATION"></button>
+            </div>
+            <div id="speeddial-caption"></div>
+            <div id="home_page" class="home_page_transform">
+                <div id="bookmark_page" class="line">
+                    <button id="management_exit" tabindex="1" class="home_page_button" data-translation="Management" data-state="BOOKMARKS_EDIT_NAVIGATION"></button>
+                    <div class="speeddials-anim-wrapper">
+                        <div class="speeddials"></div>
+                    </div>
+                    <div class="speeddial_scrollBox">
+                        <div class="speeddial_scrollBar"></div>
+                    </div>
+                </div>
+                <div id="history_page" class="home_page_transform line">
+                    <button id="clear_all" class="home_page_button" tabindex="1" data-translation="Clear All" data-state="HISTORY_CLEAR_ALL_NAVIGATION"></button>
+                    <div class="history_date"></div>
+                    <div id="history_date" class="line">
+                        <li data-translation="Today" tabindex="1" data-state="HISTORY_DATE_NAVIGATION"></li>
+                        <li data-translation="Yesterday" tabindex="1" data-state="HISTORY_DATE_NAVIGATION"></li>
+                        <li data-translation="Last Week" tabindex="1" data-state="HISTORY_DATE_NAVIGATION"></li>
+                        <li data-translation="Before" tabindex="1" data-state="HISTORY_DATE_NAVIGATION"></li>
+                    </div>
+                    <div class="history_separator_a"></div>
+                    <div class="history_separator_b"></div>
+                    <div id="history_detail" class="line">
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                        <li class="history_item hide" tabindex="1" data-state="HISTORY_DETAIL_NAVIGATION"></li><button tabindex="1" class="fa fa-tags add_history_to_bookmark hide" data-state="HISTORY_DETAIL_NAVIGATION"></button><button tabindex="1" class="fa fa-trash del_history hide" data-state="HISTORY_DETAIL_NAVIGATION"></button>
+                    </div>
+                    <div class="history_scrollBox">
+                        <div class="history_scrollBar"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="speeddial-footer" data-translation="Edit mode"></div>
+        </div>
+        <div class="header">
+            <div id="sections" class="line">
+                <div id="sections_buttons">
+                    <button class="history" tabindex="1" data-translation="History"></button>
+                    <button class="tabs" tabindex="1" data-translation="Tabs"></button>
+                    <button class="bookmarks" tabindex="1" data-translation="Bookmarks"></button>
+                </div>
+                <div id="sections_caption"></div>
+            </div>
+            <div id="elements" class="line wrap"></div>
+            <div id="hidden-elements">
+                <ul id="history-elements"></ul>
+                <ul id="tabs-elements"></ul>
+                <ul id="bookmarks-elements"></ul>
+            </div>
+            <div id="navigation" class="line wrap">
+                <span id="security-icon" class="security-icon-style fa fa-search" data-state="MENU_NAVIGATION"></span>
+                <span id="loading_status" class="fa fa-spinner fa-2x fa-spin" data-state="MENU_NAVIGATION"></span>
+                <input type="text" id="url" tabindex="1" class="" data-translation="Homepage" maxlength="2084" data-state="MENU_NAVIGATION"></input>
+                <button id="goToUrl" tabindex="1" class="fa fa-arrow-right goUrl" data-state="MENU_NAVIGATION"></button>
+                <button id="back" tabindex="1" class="fa fa-chevron-left disabled" data-state="MENU_NAVIGATION"> </button>
+                <button id="forward" tabindex="1" class="fa fa-chevron-right disabled " data-state="MENU_NAVIGATION"> </button>
+                <button id="open-speeddial" tabindex="1" class="fa fa-home " data-state="MENU_NAVIGATION"> </button>
+                <button id="addfav" tabindex="1" class="fa fa-tags " data-state="MENU_NAVIGATION"></button>
+                <button id="reloadStop" tabindex="1" class="fa fa-refresh " data-state="MENU_NAVIGATION"> </button>
+                <button id="zoom" tabindex="1" class="fa fa-cc-visa " data-state="MENU_NAVIGATION"></button>
+            </div>
+            <div id="color-button">
+                <button class="redButton" disabled="disabled"></button>
+                <button class="greenButton" disabled="disabled"></button>
+                <button class="blueButton" disabled="disabled"></button>
+                <button class="yellowButton" disabled="disabled"></button>
+            </div>
+            <div id="progress"></div>
+            <div id="tables" class="line wrap">
+                <div id="multi-tabs" class="browesrtabs">
+                </div>
+                <button id="add_tables_button" tabindex="1" class="fa fa-plus-circle" data-state="TAB_NAVIGATION"></button>
+                <button id="close_tables_button" tabindex="1" class="fa fa-times-circle" data-state="TAB_NAVIGATION"></button>
+            </div>
+        </div>
+        <div id="options-popup" class="popup">
+            <div>
+                <div>
+                    <button id="button-close-tab" class="hide" tabindex="0" data-translation="Close Current Tab"></button>
+                    <button id="button-open-in-new-tab" class="hide" tabindex="1" data-translation="Open Link in New Tab"></button>
+                    <button id="button-add-to-speed-dial" data-default-focus="true" tabindex="2" data-translation="Add to Speed Dial"></button>
+                    <button id="button-add-to-bookmarks" tabindex="3" data-translation="Add to Bookmarks"></button>
+                    <button id="button-page-security" tabindex="4" data-translation="Page Security"></button>
+                    <hr>
+                    <button id="button-settings" class="button-right-arrow" tabindex="5" data-translation="Settings"></button>
+                    <button id="button-help" class="button-right-arrow" tabindex="6" data-translation="Help"></button>
+                    <button id="button-exit" tabindex="7" data-translation="Exit Opera TV Browser"></button>
+                </div>
+            </div>
+        </div>
+        <div id="security-info-popup" class="popup">
+            <div>
+                <div>
+                    <div id="security-info" data-translation="Security Information"></div>
+                    <div id="security-info-url"></div>
+                    <span class="secure" data-translation="This connection is secure."></span>
+                    <span class="non-secure" data-translation="This connection is NOT secure."></span>
+                    <span class="expired" data-translation="This connection certificate is untrusted!"></span>
+                    <hr>
+                    <div id="security-more-info">
+                        <div><strong data-translation="Certificate"></strong><span id="security-certificate"></span> </div>
+                        <div><strong data-translation="Connection"></strong><span id="security-connection"></span> </div>
+                    </div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="OK"></button>
+                </div>
+            </div>
+        </div>
+        <div id="settings-popup" class="popup left-button-can-close buttons-no-icons">
+            <div>
+                <div>
+                    <div id="caption-section-settings" data-translation="Settings"></div>
+                    <hr>
+                    <button id="button-zoom" class="button-right-arrow" data-default-focus="true" tabindex="0" data-translation="Zoom"></button>
+                    <button id="button-clear-history" tabindex="1" data-translation="Clear History"></button>
+                </div>
+            </div>
+        </div>
+        <div id="zoom-popup" class="popup left-button-can-close buttons-no-icons">
+            <div>
+                <div>
+                    <button id="button-zoom-100" data-default-focus="true" tabindex="0" data-translation="Zoom 100%"></button>
+                    <button id="button-zoom-150" tabindex="1" data-translation="Zoom 150%"></button>
+                    <button id="button-zoom-200" tabindex="2" data-translation="Zoom 200%"></button>
+                </div>
+            </div>
+        </div>
+        <div id="add-to-bookmark-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Add Page to Bookmarks"></div>
+
+                    <div class="popup-input"><span data-translation="name"></span>
+                        <input tabindex="0" id="add-to-bookmark-title" maxlength="42">
+                    </div>
+                    <div class="popup-input"><span data-translation="address"></span>
+                        <input tabindex="1" id="add-to-bookmark-address" maxlength="512">
+                    </div>
+                    <button class="button-ok" data-default-focus="true" tabindex="2" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="2" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="exit-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Exit"></div>
+                    <div class="popup-description" data-translation="Close Opera TV Browser?"></div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="0" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="clear-history-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Clear History"></div>
+                    <div class="popup-description" data-translation="Do you want to clear history?"></div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="0" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="manage-bookmark-popup" class="popup">
+            <div>
+                <div>
+                    <button class="button-move" data-default-focus="true" tabindex="0" data-translation="Move"></button>
+                    <button class="button-delete" tabindex="1" data-translation="Delete"></button>
+                </div>
+            </div>
+        </div>
+        <div id="bookmark-delete-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-description" data-translation="Delete Bookmark?"></div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="0" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="add-to-speed-dial-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Add to Bookmarks"></div>
+                    <!--<div class="popup-input"><span data-translation="name"></span>-->
+                        <!--<input tabindex="0" id="add-to-speed-dial-title" maxlength="42">-->
+                    <!--</div>-->
+                    <!--<div class="popup-input"><span data-translation="address"></span>-->
+                        <!--<input tabindex="1" id="add-to-speed-dial-address" maxlength="512">-->
+                    <!--</div>-->
+                    <div><hr/></div>
+                    <div><span id="address_span" data-translation="address">address</span></div>
+                    <div class="popup-input" style="display: none">
+                    <input id="add-to-speed-dial-title" maxlength="42">
+                    </div>
+                    <div class="popup-input" id="bookmark_popup_input">
+                        <input tabindex="0" id="add-to-speed-dial-address" data-translation="URL"  maxlength="512"  style="width: 99%;">
+                    </div>
+                    <button id="add-to-speed-dial-button" data-default-focus="true" tabindex="0">+</button>
+                    <!--<button class="button-ok" data-default-focus="true" tabindex="2" data-translation="OK" style="display: none"></button>-->
+                    <!--<button class="button-cancel" tabindex="2" data-translation="Cancel" style="display: none"></button>-->
+                    <div id="pop_up_tip">
+                        <span id="url_tip" data-translation="The input address may be incorrect; check if the address is correct" style="float: left;visibility: hidden;"></span><br>
+                        <span id="recommended" data-translation="recommended">recommended</span>
+                    </div>
+                    <div id="recommend" class="recommend">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="edit-speed-dial-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Edit Speed Dial"></div>
+                    <div class="popup-input"><span data-translation="name"></span>
+                        <input tabindex="0" id="edit-speed-dial-title" maxlength="42">
+                    </div>
+                    <div class="popup-input"><span data-translation="address"></span>
+                        <input tabindex="1" id="edit-speed-dial-address" maxlength="512">
+                    </div>
+                    <button class="button-ok" data-default-focus="true" tabindex="2" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="2" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="manage-speed-dial-popup" class="popup">
+            <div>
+                <div>
+                    <button class="button-move" tabindex="0" data-translation="Move" data-default-focus="true"></button>
+                    <button class="button-edit" tabindex="1" data-translation="Edit"></button>
+                    <button class="button-delete" tabindex="2" data-translation="Delete"></button>
+                </div>
+            </div>
+        </div>
+        <div id="delete-speed-dial-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Delete Speed Dial Entry?"></div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="0" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="help-popup" class="popup left-button-can-close buttons-no-icons">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Help"></div>
+                    <hr>
+                    <button id="button-about" data-default-focus="true" tabindex="0" data-translation="About"></button>
+                    <button id="button-opera-help" tabindex="1" data-translation="Opera Help"></button>
+                </div>
+            </div>
+        </div>
+        <div id="about-popup" class="popup buttons-no-icons">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="About"></div>
+                    <hr>
+                    <div class="scrollable-content"></div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div id="opera-help-popup" class="popup buttons-no-icons">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Opera Help"></div>
+                    <hr>
+                    <div class="scrollable-content"></div>
+                </div>
+            </div>
+        </div>
+        <div id="alert-popup" class="popup only-button-can-close buttons-no-icons">
+            <div>
+                <div>
+                    <div class="popup-description"></div>
+                    <button class="button-close" data-default-focus="true" tabindex="0" data-translation="Close"></button>
+                </div>
+            </div>
+        </div>
+        <div id="prompt-popup" class="popup only-button-can-close">
+            <div>
+                <div>
+                    <div class="popup-description"></div>
+                    <input data-default-focus="true" tabindex="0" id="prompt-input" maxlength="512">
+                    <button class="button-ok" tabindex="1" data-translation="OK"></button>
+                </div>
+            </div>
+        </div>
+        <div id="confirm-popup" class="popup only-button-can-close">
+            <div>
+                <div>
+                    <div class="popup-description"></div>
+                    <button class="button-cancel" data-default-focus="true" tabindex="0" data-translation="Cancel"></button>
+                    <button class="button-ok" tabindex="0" data-translation="OK"></button>
+                </div>
+            </div>
+        </div>
+        <div id="authentication-popup" class="popup only-button-can-close">
+            <div>
+                <div>
+                    <div class="popup-description" data-translation="Log In"></div>
+                    <div class="popup-input"><span data-translation="Username"></span>
+                        <input data-default-focus="true" tabindex="0" id="authentication-username" maxlength="42">
+                    </div>
+                    <div class="popup-input"><span data-translation="Password"></span>
+                        <input type="password" tabindex="1" id="authentication-password" maxlength="42">
+                    </div>
+                    <button class="button-ok" tabindex="2" data-translation="OK"></button>
+                    <button class="button-cancel" tabindex="2" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="clear-all-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Clear All"></div>
+                    <li class="clear-all-select" tabindex="0"><span data-translation="Clear history" class="select-options"></span><span class="clear-select-options" /></li>
+                    <li class="clear-all-select" tabindex="1"><span data-translation="Clear Cookies" class="select-options"></span><span class="clear-select-options" /></li>
+                    <button class="button-ok" tabindex="2" data-translation="Clear"></button>
+                    <button class="button-cancel" tabindex="2" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div id="advice-add-bookmark-popup" class="popup">
+            <div>
+                <div>
+                    <div class="popup-caption" data-translation="Add Bookmark"></div>
+                    <div id="advice-add-bookmark-notice" data-translation="Interested in the following website which you browser often?"></div>
+                    <div id="advice-add-bookmark-url">www.google.com</div>
+                    <button class="button-ok" data-default-focus="true" tabindex="0" data-translation="Add Bookmark"></button>
+                    <button class="button-cancel" tabindex="0" data-translation="Cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div class="notifications"></div>
+        <div class="browser-fullscreen-player browser-player-hide">
+            <div class="browser-player-controller">
+                <button class="browser-player-controller-button fa fa-backward"> </button>
+                <button class="browser-player-controller-button fa fa-play"> </button>
+                <button class="browser-player-controller-button fa fa-forward"> </button>
+                <button class="browser-player-controller-button fa fa-compress"> </button>
+            </div>
+            <div class="browser-play-info">
+                <span class="browser-time-info browser-time-info-current">00:00:00</span>
+                <div class="browser-progress-background"></div>
+                <div class="browser-progress-info"></div>
+                <span class="browser-time-info browser-time-info-duration">00:00:00</span>
+            </div>
+        </div>
+        <div class="hisenseBrowserLoading browser-player-hide">
+            <div class="browser-spinner">
+                <div class="browser-spinner-container browserLoadingContainer1">
+                    <div class="browserLoadingCircle1"></div>
+                    <div class="browserLoadingCircle2"></div>
+                    <div class="browserLoadingCircle3"></div>
+                    <div class="browserLoadingCircle4"></div>
+                </div>
+                <div class="browser-spinner-container browserLoadingContainer2">
+                    <div class="browserLoadingCircle1"></div>
+                    <div class="browserLoadingCircle2"></div>
+                    <div class="browserLoadingCircle3"></div>
+                    <div class="browserLoadingCircle4"></div>
+                </div>
+                <div class="browser-spinner-container browserLoadingContainer3">
+                    <div class="browserLoadingCircle1"></div>
+                    <div class="browserLoadingCircle2"></div>
+                    <div class="browserLoadingCircle3"></div>
+                    <div class="browserLoadingCircle4"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+
+</html>
