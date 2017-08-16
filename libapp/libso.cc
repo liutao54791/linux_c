@@ -31,7 +31,7 @@ int my_fgets(char* filename)
     return 0;
 }
 
-window creatNeWindow(int tableId,bool trans)
+window creatNewWindow(int tableId,bool trans)
 {
     static  int windowNum = 0;
     window m_window;

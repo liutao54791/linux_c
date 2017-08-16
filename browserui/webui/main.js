@@ -1861,12 +1861,9 @@ var KeyboardHandler = {
         var lineIndex = lines.indexOf(currentLine);
         console.log(lineIndex);
         var currentLineItems = Array.apply(null, currentLine.querySelectorAll("[tabindex]:not(.hide)"));
-        console.log(currentLineItems);
         var currentFocusItem = currentLine.querySelector(".focus");
         var currentSlectItem = currentLine.querySelector(".select");
         var currentIndex = currentLineItems.indexOf(currentFocusItem);
-        console.log(currentIndex);
-        console.log(currentLine.querySelectorAll("[tabindex]:not(.hide)").length);
         if (currentLine.querySelectorAll("[tabindex]:not(.hide)").length >= 8) {
         	document.getElementById("add_tables_button").classList.add("disabled");
         }
@@ -4527,6 +4524,11 @@ var NativeApi = {
             Application.updateUrl(currentUrl, e.tab_id);
             Tabs.updateTabUrl(e.tab_id, currentUrl);
             Tabs.updateTabTitle(e.tab_id, currentUrl);
+            var multitabs = document.getElementById("multi-tabs").getElementsByTagName("button");
+        	multitabs[e.tab_id].setAttribute("loadstate", 1);
+        	if(Tabs.getActiveTabId() == e.tab_id){
+        		document.getElementById("loading_status").classList.remove("hide");
+        	}
         }
     },
     eventLoadingFinished: function(e) {
@@ -4535,6 +4537,8 @@ var NativeApi = {
             console.log("Setting Page Zoom Level to: " + res[0]);
             Tabs.getTab(e.tab_id).setZoom(res[0]);
         });
+        var multitabs = document.getElementById("multi-tabs").getElementsByTagName("button");
+        multitabs[e.tab_id].setAttribute("loadstate", 0);
         /*
         NativeApi.getTabTitle(function(i) {
             Tabs.updateTabTitle(+e.tab_id, i[0].title);
@@ -4543,8 +4547,9 @@ var NativeApi = {
         if (SETTINGS.SHOW_THUMBNAILS_IN_TABS) {
             NativeApi.createThumbnail(e.tab_id, SETTINGS.THUMBNAIL_WIDTH, SETTINGS.THUMBNAIL_HEIGHT, Tabs.updateTabThumbnail);
         }
-
-        document.getElementById("loading_status").classList.add("hide");
+        if(Tabs.getActiveTabId() == e.tab_id){
+        	document.getElementById("loading_status").classList.add("hide");
+        }
     },
     eventLoadingFailed:function(e){
         LOG("eventLoadingFailed", e);
@@ -5682,6 +5687,7 @@ var TabsLine = {
         	bt.innerHTML ="<img id=" + imgid + " class = 'favicon' src = '../../abc.jpg'" + ">" + "<span id = " + spanid + ">" + i18n(url) + "</span>";
         	bt.setAttribute("id", "table-" + tabIndex);
         	bt.setAttribute("tabindex", id);
+        	bt.setAttribute("loadstate", 0);
         	bt.setAttribute("data-state", "TAB_NAVIGATION");
         	bt.classList.add("tables_button");
         	tabIndex++;
@@ -5730,14 +5736,6 @@ var TabsLine = {
     	var imgid = "img" + id;
     	document.getElementById(spanid).innerHTML = i18n(title);
     	//document.getElementById(imgid).classList.remove("hide");
-    	/*var multitabs = document.getElementById("multi-tabs").getElementsByTagName("button");
-    	var i;
-    	for (i = 0; i < multitabs.length; i++) {
-            if (multitabs[i].getAttribute("tabindex") == id) {
-                multitabs[i].innerHTML = i18n(title);
-                break;
-            }
-        }*/
     },
 
     setActiveTab: function(id){
@@ -5749,6 +5747,11 @@ var TabsLine = {
         for (i = 0; i < multitabs.length; i++) {
             if (multitabs[i].getAttribute("tabindex") == id) {
                 multitabs[i].classList.add("select");
+                if (multitabs[i].getAttribute("loadstate") == 0) {
+                	document.getElementById("loading_status").classList.add("hide");
+                }else if (multitabs[i].getAttribute("loadstate") == 1) {
+                	document.getElementById("loading_status").classList.remove("hide");
+                }
                 this.beforeselecttab = multitabs[i];
                 break;
             }
@@ -5765,7 +5768,6 @@ var TabsLine = {
     		tabs[i].firstElementChild.setAttribute("id","img" + i);
     		tabs[i].firstElementChild.nextElementSibling.setAttribute("id","span" + i);
     	}
-
     },
 };
 

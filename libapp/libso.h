@@ -18,6 +18,6 @@ struct window
     bool  transparent;
 };
 
-window creatNeWindow(int tableId,bool trans);
+window creatNewWindow(int tableId,bool trans);
 
 #endif
