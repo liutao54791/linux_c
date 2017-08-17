@@ -791,7 +791,6 @@ void BrowserModeHiBrowser::leave()
     browserInput.enableKeyInput( false );
     browserInput.enableMouseInput( false );
 
-    
     //opera.setPageZoom( m_main_window, 1 );
     //opera.setPageZoom( m_thumbnail_window, 1 );
 
