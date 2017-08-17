@@ -339,7 +339,7 @@ body {
     margin-top: 37px;
     margin-right: 50px;
     margin-bottom: 37px;
-    margin-left: 890px;
+    margin-left: 10px;
     font-size: 30px !important;
 }
 
@@ -360,6 +360,10 @@ body {
     white-space: nowrap;
 }
 
+.span {
+    transition-duration: 3.567s;
+}
+
 #add_tables_button{
     /*float: right;*/
     width: 60px;
@@ -372,7 +376,7 @@ body {
     background-size: contain;
     font-size: 35px !important;
     color: #3A4E5F;
-    background: -webkit-linear-gradient(top, #FCFCFC, #98A0A2);
+    background-color: transparent;
 }
 
 #close_tables_button{
@@ -387,7 +391,7 @@ body {
     background-size: contain;
     font-size: 35px !important;
     color: #3A4E5F;
-    background: -webkit-linear-gradient(top, #FCFCFC, #98A0A2);
+    background-color: transparent;
 }
 
 
@@ -613,7 +617,7 @@ body {
     background-size: contain;
     font-size: 35px !important;
     color: #3A4E5F;
-    background: -webkit-linear-gradient(top, #FCFCFC, #98A0A2);
+    background-color: transparent;
 }
 
 /*#navigation button {

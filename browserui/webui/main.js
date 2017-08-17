@@ -369,6 +369,9 @@ var Application = {
                     document.getElementById("reloadStop").classList.add("fa-refresh");
                     var loadingStatus = document.getElementById("loading_status");
                     loadingStatus.classList.add("hide");
+                    goToUrl = document.getElementById("goToUrl");
+                    goToUrl.classList.add("fa-arrow-right");
+                	goToUrl.classList.remove("disabled");
                     NativeApi.stopLoad();
                 } else if(document.getElementById("reloadStop").classList.contains("fa-refresh")){
                     document.getElementById("reloadStop").classList.remove("fa-refresh");
@@ -4528,6 +4531,8 @@ var NativeApi = {
         	multitabs[e.tab_id].setAttribute("loadstate", 1);
         	if(Tabs.getActiveTabId() == e.tab_id){
         		document.getElementById("loading_status").classList.remove("hide");
+        		document.getElementById("goToUrl").classList.remove("fa-arrow-right");
+        		document.getElementById("goToUrl").classList.add("disabled");
         	}
         }
     },
@@ -4547,8 +4552,11 @@ var NativeApi = {
         if (SETTINGS.SHOW_THUMBNAILS_IN_TABS) {
             NativeApi.createThumbnail(e.tab_id, SETTINGS.THUMBNAIL_WIDTH, SETTINGS.THUMBNAIL_HEIGHT, Tabs.updateTabThumbnail);
         }
+        var goToUrl = document.getElementById("goToUrl");
         if(Tabs.getActiveTabId() == e.tab_id){
         	document.getElementById("loading_status").classList.add("hide");
+        	goToUrl.classList.add("fa-arrow-right");
+        	goToUrl.classList.remove("disabled");
         }
     },
     eventLoadingFailed:function(e){
@@ -5684,7 +5692,7 @@ var TabsLine = {
         	var bt=document.createElement("button");
         	var spanid = "span" + tabIndex;
         	var imgid  = "img" + tabIndex;
-        	bt.innerHTML ="<img id=" + imgid + " class = 'favicon' src = '../../abc.jpg'" + ">" + "<span id = " + spanid + ">" + i18n(url) + "</span>";
+        	bt.innerHTML ="<img id=" + imgid + " class = 'favicon ' src = '../../abc.jpg'" + ">" + "<span id = " + spanid + " class = 'span'" + ">" + i18n(url)+ "</span>";
         	bt.setAttribute("id", "table-" + tabIndex);
         	bt.setAttribute("tabindex", id);
         	bt.setAttribute("loadstate", 0);
@@ -5744,20 +5752,24 @@ var TabsLine = {
         }
         var multitabs = document.getElementById("multi-tabs").getElementsByTagName("button");
         var i;
+        var goToUrl = document.getElementById("goToUrl");
         for (i = 0; i < multitabs.length; i++) {
             if (multitabs[i].getAttribute("tabindex") == id) {
                 multitabs[i].classList.add("select");
                 if (multitabs[i].getAttribute("loadstate") == 0) {
                 	document.getElementById("loading_status").classList.add("hide");
+                	goToUrl.classList.add("fa-arrow-right");
+                	goToUrl.classList.remove("disabled");
                 }else if (multitabs[i].getAttribute("loadstate") == 1) {
                 	document.getElementById("loading_status").classList.remove("hide");
+                	goToUrl.classList.remove("fa-arrow-right");
+                	goToUrl.classList.add("disabled");
                 }
                 this.beforeselecttab = multitabs[i];
                 break;
             }
         }
     },
-
     render: function() {
     	var tabs = document.getElementById("multi-tabs").getElementsByTagName("button");
     	var tabNums = tabs.length;
