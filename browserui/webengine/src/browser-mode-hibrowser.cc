@@ -1114,7 +1114,7 @@ void BrowserModeHiBrowser::onPlatformMessage( opera::evt::PlatformMessage event 
         {
             Json::Value o;
             Json::FastWriter writer;
-            BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!Remove tab start!!!!!~~~~~~~~~~~~");
+            BROWSER_LOG( ALWAYS,"Remove tab start!");
             if( main_window_vector.size() == 1 ) 
             { 
                 return; 
@@ -1122,18 +1122,18 @@ void BrowserModeHiBrowser::onPlatformMessage( opera::evt::PlatformMessage event 
             int index = getValueByName(event.message, "id", 0);
             if( activeTabIndex == index )
             {
-                BROWSER_LOG( ALWAYS,"~~~~~~~~~~~activeTabIndex is %d~~~~~~~~~~~\n",activeTabIndex);
-                BROWSER_LOG( ALWAYS,"~~~~~~~~~~~main_window_vector is %d~~~~~~~~~~~\n",main_window_vector.size());
+                BROWSER_LOG( ALWAYS,"activeTabIndex is %d\n",activeTabIndex);
+                BROWSER_LOG( ALWAYS,"main_window_vector is %d\n",main_window_vector.size());
                 opera::Handle destroyWindow = main_window_vector.at(activeTabIndex).m_main_window;
                 std::vector<TapsWondow>::iterator it = main_window_vector.begin() + index;
                 main_window_vector.erase(it);
                 opera.destroyWindow( destroyWindow);
-                BROWSER_LOG( ALWAYS,"~~~~~~~~~~~main_window_vector is %d~~~~~~~~~~~\n",main_window_vector.size());
+                BROWSER_LOG( ALWAYS,"main_window_vector is %d\n",main_window_vector.size());
                 o["msg"] = getMessageStringValue(MESSAGE_EVENT_REMOVE_TAB);
                 o["id"] = index;
                 opera.sendPlatformEvent( m_ui_view, writer.write(o) );
     
-                BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!Remove tab end!!!!!~~~~~~~~~~~~");
+                BROWSER_LOG( ALWAYS,"Remove tab end");
             }
             break;
         }
@@ -1141,9 +1141,9 @@ void BrowserModeHiBrowser::onPlatformMessage( opera::evt::PlatformMessage event 
         {   
             Json::Value o;
             Json::FastWriter writer;
-            BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!Activated tab start!!!!!~~~~~~~~~~~~");//´òÓ¡log
+            BROWSER_LOG( ALWAYS,"Activated tab start!");//´òÓ¡log
             activeTabIndex = getValueByName(event.message, "id", 0);
-            BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!activeTabIndex is %d!!!!~~~~~~~~~~~~",activeTabIndex);
+            BROWSER_LOG( ALWAYS,"activeTabIndex is %d",activeTabIndex);
             o["msg"] = getMessageStringValue(MESSAGE_EVENT_TAB_ACTIVATED);
             o["id"] = activeTabIndex;
             opera.show(main_window_vector.at(activeTabIndex).m_main_window);
@@ -1154,13 +1154,13 @@ void BrowserModeHiBrowser::onPlatformMessage( opera::evt::PlatformMessage event 
                 && (activeTabIndex != beforeTabIndex) 
                 && (beforeTabIndex != main_window_vector.size()))
             {
-                BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!hide beforeTabIndex!!!!~~~~~~~~~~~~");
+                BROWSER_LOG( ALWAYS,"hide beforeTabIndex!");
                 opera.hide(main_window_vector.at(beforeTabIndex).m_main_window);
             }
-            BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!hide beforeTabIndex end!!!!~~~~~~~~~~~~");
+            BROWSER_LOG( ALWAYS,"hide beforeTabIndex end!");
             beforeTabIndex = activeTabIndex;
             opera.sendPlatformEvent( m_ui_view, writer.write(o) );
-            BROWSER_LOG( ALWAYS,"~~~~~~~~~~~~!!!!!Activated tab end!!!!!~~~~~~~~~~~~");
+            BROWSER_LOG( ALWAYS,"Activated tab end!");
             break;
         }
         case CMD_ID_LOADURL:
