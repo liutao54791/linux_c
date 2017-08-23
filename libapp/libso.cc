@@ -23,7 +23,7 @@ int my_fgets(char* filename)
         }
         while(!feof(fp))                        //read all  lines
         {
-            fgets(buf,sizeof(buf),fp);    //  read one ine
+            fgets(buf,sizeof(buf),fp);    //  read one line
             printf("buf is %s", buf);
         }
         fclose(fp);
