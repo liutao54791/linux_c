@@ -6,6 +6,10 @@
 #include <malloc.h>
 #include <iostream>
 
+/*
+ 1.public和protected变量：base类和derived类共享
+ 2.即使是private继承，也符合第一条的原则
+*/
 
 class testParent
 {
