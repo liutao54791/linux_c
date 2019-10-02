@@ -16,6 +16,7 @@ OBJS        := $(SRCS:.cc=.o)
 
 INCLUDES += -I$(SOROOT)
 INCLUDES += -I$(SOROOT)/../libapp
+INCLUDES += -I$(SOROOT)/../cmcc
 SOS = -shared -fpic 
 
 CFLAGS += $(INCLUDES)
