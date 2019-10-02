@@ -62,10 +62,10 @@ clean: libapp-clean libuart-clean mainprocess-clean processpthread-clean libipc-
 	rm process_main
     endif
     ifeq (lib, $(wildcard lib))
-	#rm -rf lib
+	rm -rf lib/*
     endif
     ifeq (bin, $(wildcard bin))
-	#rm -rf bin
+	rm -rf bin/*
     endif
 libapp-clean:
 	@echo ">>>Start cleaning libso."
