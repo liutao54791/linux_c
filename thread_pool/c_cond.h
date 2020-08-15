@@ -13,19 +13,24 @@ class Cond
 {
 public:
 	Cond();
+	Cond(pthread_mutex_t* mutex);
 	Cond(pthread_cond_t* cond, pthread_mutex_t* mutex);
 
 	void wait();
+	void wait_with_mutex();
 	void wait_with_timeout(int mill);
 
 	void notify();
 	void notifyToAll();
 
+	pthread_cond_t* get_cond();
+	pthread_mutex_t* get_mutex();
+
 	~Cond();
 
 private:
-	pthread_cond_t* m_cond;
-	pthread_mutex_t* m_mutex;
+	pthread_cond_t m_cond;
+	pthread_mutex_t m_mutex;
 	
 };
 

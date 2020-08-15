@@ -24,7 +24,7 @@ public:
 	~Cmutex();
 
 private:
-	pthread_mutex_t* m_mutex;
+	pthread_mutex_t m_mutex;
 	pthread_t thread_self;
 	
 };

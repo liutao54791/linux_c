@@ -6,7 +6,20 @@
 #include <malloc.h>
 #include <iostream>
 
-class testParent
+class grandParent
+{
+public:
+	inline void release()
+	{
+		printf("this is grandParent release\n");
+		clear();
+	};
+
+	virtual void clear() = 0;
+
+};
+
+class testParent:public grandParent
 {
 public:
 	testParent()
@@ -45,6 +58,7 @@ protected:
 
 private:
 	int bParent;
+	virtual void testPrivateVirtual();
 };
 
 
@@ -64,6 +78,8 @@ public:
 	void testNoVirtual(void);
 	void test_protected_func();
 	void test_protected_func1();
+	void clear();
+	virtual void testPrivateVirtual();
     ~test_virtual(){};
 
 protected:

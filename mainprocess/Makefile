@@ -49,6 +49,7 @@ INC_PATHS += -I$(LINUX_DIR)/libapp
 INC_PATHS += -I$(LINUX_DIR)/uart
 INC_PATHS += -I$(LINUX_DIR)/libprocess_pthread
 INC_PATHS += -I$(LINUX_DIR)/libipc
+INC_PATHS += -I$(LINUX_DIR)/thread_pool
 
 OBJECT_DIRECTORY = build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -66,6 +67,7 @@ LDFLAGS += -L$(LINUX_DIR)/libapp -lapp
 LDFLAGS += -L$(LINUX_DIR)/uart -luart
 LDFLAGS += -L$(LINUX_DIR)/libprocess_pthread -lprocess_pthread
 LDFLAGS += -L$(LINUX_DIR)/libipc -lipc
+LDFLAGS += -L$(LINUX_DIR)/thread_pool -lthreadpool
 
 vpath %.cc $(C_PATHS)
 

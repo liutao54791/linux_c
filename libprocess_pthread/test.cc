@@ -31,6 +31,11 @@ void testParent::test_protected_func2()
     printf("testParent::test_protected_func2\n");
 }
 
+void testParent::testPrivateVirtual()
+{
+    printf("testParent::testPrivateVirtual\n");
+}
+
 /*
  1.public和protected变量：base类和derived类共享, 一块内存
  2.即使是private继承，也符合第一条的原则
@@ -93,4 +98,14 @@ void test_virtual::test_protected_func1()
 void test_virtual::test_protected_func2()
 {
     printf("test_virtual::test_protected_func2\n");
+}
+
+void test_virtual::testPrivateVirtual()
+{
+    printf("test_virtual::testPrivateVirtual\n");
+}
+
+void test_virtual::clear()
+{
+    printf("test_virtual::clear\n");
 }
