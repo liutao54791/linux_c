@@ -9,12 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <list>
 
 #include "c_mutex.h"
 #include "c_Pthread.h"
 #include "c_cond.h"
 #include "c_thread.h"
 #include "c_thread_poll.h"
+#include "c_task.h"
 
 using namespace std;
 
@@ -25,12 +27,15 @@ public:
     ~c_thread_manager();
 
     void start();
-    void send_event_to_queue();
+    static void* run_thread_routing(void* obj);
+    void send_event_to_queue(c_task* task);
 
     void initCondAndMutex();
     void init();
 private:
-    void get_event();
+    c_task* get_event();
+
+    std::list<c_task*> c_task_list;
     Cond* evenCond;
     Cmutex* eventQmutex;
     c_thread_poll* m_poll;

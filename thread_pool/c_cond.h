@@ -9,12 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "c_mutex.h"
+
 class Cond
 {
 public:
 	Cond();
-	Cond(pthread_mutex_t* mutex);
-	Cond(pthread_cond_t* cond, pthread_mutex_t* mutex);
+	Cond(Cmutex* mutex);
+	Cond(pthread_cond_t* cond, Cmutex* mutex);
 
 	void wait();
 	void wait_with_mutex();
@@ -24,13 +26,16 @@ public:
 	void notifyToAll();
 
 	pthread_cond_t* get_cond();
-	pthread_mutex_t* get_mutex();
+	Cmutex* get_mutex();
 
 	~Cond();
 
 private:
-	pthread_cond_t m_cond;
-	pthread_mutex_t m_mutex;
+	pthread_cond_t m_self_cond;
+	pthread_mutex_t m_self_mutex;
+
+	pthread_cond_t* m_cond;
+	Cmutex* m_mutex;
 	
 };
 

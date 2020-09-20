@@ -25,7 +25,7 @@ public:
 
     void delete_all_threads();
 
-    void get_idle_thread(vector<c_thread*>::iterator& thread_obj_iter);
+    c_thread* get_idle_thread(void);
 
     static c_thread_poll* get_instance();
 
@@ -34,6 +34,7 @@ private:
     ~c_thread_poll();
     static c_thread_poll* m_instance;
     vector<c_thread*> m_thread_poll;
+    pthread_t thread_index[10];
 };
 
 #endif

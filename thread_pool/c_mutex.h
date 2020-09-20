@@ -20,11 +20,12 @@ public:
 	void unlock();
 
 	pthread_mutex_t* get_mutex();
+	pthread_mutex_t  init_mutex;
+	pthread_mutex_t* m_mutex;
 
 	~Cmutex();
 
 private:
-	pthread_mutex_t m_mutex;
 	pthread_t thread_self;
 	
 };

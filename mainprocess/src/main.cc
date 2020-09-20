@@ -34,6 +34,7 @@
 #include "sort_algorithm.h"
 #include "c_thread.h"
 #include "c_thread_manager.h"
+#include "c_task.h"
 
 /*
  1.testPrint() 子类强制转换成父类之后，转换后的指针，也不能访问父类的虚函数，调用到的还是子类的函数，因为虚函数表是子类的。（特殊的隐藏）（重写）
@@ -69,17 +70,28 @@
 //
 //}
 
-int  main()
+void thread_poll_main()
 {
-    int i = 2;
-    switch(i)
+    printf("this is thread poll test\n");
+    c_thread_manager* m_thread_manager = new c_thread_manager;
+    m_thread_manager->init();
+    m_thread_manager->start();
+    for (int i = 0; i < 5; ++i)
     {
-        case 1:i++;
-        case 2:i--;
-        case 3:++i;break;
-        case 4:--i;
-        default: i++;
+        c_task* task = new c_task;
+        m_thread_manager->send_event_to_queue(task);
+        sleep(1);
     }
-    printf("i：%d",i);
-    return 0;
+
+}
+
+int  main()
+{  
+
+    thread_poll_main();
+    while(1)
+    {
+        sleep(10);
+    }
+    printf("this is c_thread_poll test\n");
 }

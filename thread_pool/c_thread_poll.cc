@@ -2,6 +2,7 @@
 
 c_thread_poll::c_thread_poll()
 {
+    //thread_index[10] = {0};
     delete_all_threads();
 }
 
@@ -26,7 +27,7 @@ c_thread_poll* c_thread_poll::get_instance()
 void c_thread_poll::creat_thread()
 {
     printf("this is c_thread_poll::creat_thread\n");
-    pthread_t thread_index[10];
+    m_thread_poll.clear();
     for (int i = 0; i < 10; i++)
     {
         c_thread* m_thread = new c_thread();
@@ -39,7 +40,7 @@ void c_thread_poll::creat_thread()
 void c_thread_poll::creat_threads(unsigned int num)
 {
     printf("this is c_thread_poll::creat_threads\n");
-    pthread_t thread_index[10];
+    m_thread_poll.clear();
     if (num > 0)
     {
         for (int i = 0; i < num; i++)
@@ -70,18 +71,19 @@ void c_thread_poll::delete_all_threads()
     }
     else
     {
-        printf("m_thread_poll is ckean\n");
+        printf("m_thread_poll is clean\n");
     }
 }
 
-void c_thread_poll::get_idle_thread(vector<c_thread*>::iterator& thread_obj_iter)
+c_thread* c_thread_poll::get_idle_thread(void)
 {
     printf("this is c_thread_poll::get_idle_thread\n");
-    for (thread_obj_iter = m_thread_poll.begin(); thread_obj_iter != m_thread_poll.end(); thread_obj_iter++)
+    for (int i = 0; i < m_thread_poll.size(); i++)
     {
-        if ((*thread_obj_iter)->getIdleFlag())
+        if ((m_thread_poll[i] != NULL) && (m_thread_poll[i]->getIdleFlag()))
         {
-            break;
+            printf("this thread is idle,will break\n");
+            return m_thread_poll[i];
         }
     }
 

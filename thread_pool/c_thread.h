@@ -12,6 +12,7 @@
 #include "c_mutex.h"
 #include "c_Pthread.h"
 #include "c_cond.h"
+#include "c_task.h"
 
 class c_thread:public c_Pthread
 {
@@ -31,9 +32,11 @@ public:
     Cmutex& getMutex();
     Cond& getCond();
 
+    c_task* task;
+
 private:
-    Cmutex pth_mutex;
-    Cond pth_cond;
+    Cmutex* pth_mutex;
+    Cond* pth_cond;
     bool isIdle;
 
 };
