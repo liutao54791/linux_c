@@ -3,12 +3,11 @@
 # All rights, including trade secret rights, reserved.
 #
 
-all: make-dir lib-app lib-uart lib-processpthread lib-ipc process-one main-process copy
+all: make-dir lib-app lib-uart lib-processpthread lib-ipc thread-pool process-one main-process
 
 make-dir:
 	@echo ">>>Start makedir lib."
-	@mkdir lib
-	@mkdir bin
+	#@mkdir bin
 	@echo "<<<End makedir lib"
 lib-app:
 	@echo ">>>Start building libso."
@@ -29,6 +28,11 @@ lib-ipc:
 	@echo ">>>Start building lib-app."
 	@cd libipc; make;cp libipc.so  ../lib
 	@echo "<<<End building lib-app."
+
+thread-pool:
+	@echo ">>>Start building thread-pool."
+	@cd thread_pool; make;cp libthreadpool.so ../lib
+	@echo "<<<End building thread-pool"
 
 process-one:
 	@echo ">>>Start building process-one."
@@ -53,15 +57,15 @@ help:
 	@echo make
 	@echo make clean
 
-clean: libapp-clean libuart-clean mainprocess-clean processpthread-clean libipc-clean process-one-clean
+clean: libapp-clean libuart-clean mainprocess-clean processpthread-clean libipc-clean process-one-clean thread-pool-clean
     ifeq (process_main, $(wildcard process_main))
 	rm process_main
     endif
     ifeq (lib, $(wildcard lib))
-	rm -rf lib
+	rm -rf lib/*
     endif
     ifeq (bin, $(wildcard bin))
-	rm -rf bin
+	rm -rf bin/*
     endif
 libapp-clean:
 	@echo ">>>Start cleaning libso."
@@ -90,7 +94,12 @@ mainprocess-clean:
 	@cd mainprocess; make clean
 	@echo "<<<End cleaning mainapp."
 
+thread-pool-clean:
+	@echo ">>>Start cleaning thread_pool."
+	@cd thread_pool; make clean
+	@echo "<<<End cleaning thread_pool."
+
 run:
-	$(NO_ECHO)./process_main
+	@cd bin/;./process_main
 .PHONY: run
 

@@ -43,7 +43,8 @@ int CompoentChina::ChangeWorld()
 int CompoentChina::creatWindow(int tableId)
 {
     window newWindow =   creatNewWindow(tableId,true);
-    table_window.insert(make_pair<int,window*>(tableId,&newWindow));
+
+    table_window.insert(make_pair<int&,window*>(tableId,&newWindow));
 
 }
 

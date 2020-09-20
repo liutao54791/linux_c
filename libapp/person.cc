@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "person.h"
+#include "cmcc.h"
 
 using namespace std;
+//using namespace cmcc;
 
 int CPerson::sharenum = 100;
 
@@ -82,7 +84,9 @@ void CPerson::sleep(void)
 
 void CPerson::SingSongs(void)
 {
-    printf("Person sing songs\n" );
+    //printf("person sing song\n");
+    cmcc_info::getInstance()->cmcc_string = 6;
+    printf("cmcc::cmcc_info::getInstance()->cmcc_string:%d\n",cmcc_info::getInstance()->cmcc_string);
 }
 
 void CPerson::ChangeWorld(int changenum)

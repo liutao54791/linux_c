@@ -26,6 +26,11 @@ public:
     void ChangeWorld(void);
 
     int set_age(int m_age);
+
+    //void operator * (CSon&, CSon&); error: must take either zero or one argument
+    void operator * (CSon&);
+    void operator * (void);
+
 private:
     int m_Son_age;
     int m_Son_salary;

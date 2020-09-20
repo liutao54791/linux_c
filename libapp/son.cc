@@ -73,3 +73,25 @@ int CSon::set_age(int m_age)
     printf("son set age\n");
     return age;
 }
+
+
+
+/*void operator * (CSon& test1, CSon& test2)
+{
+    test1.sleep();
+    printf("test1\n");
+
+    test2.sleep();
+    printf("test2\n");
+}*/
+
+void CSon::operator * (CSon& test)
+{
+    test.sleep();
+    printf("haahahha\n");
+}
+
+void CSon::operator * (void)
+{
+    printf("haahahha\n");
+}
